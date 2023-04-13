@@ -1,18 +1,17 @@
 package itt.Vista;
 
-import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
+//import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class InicioSesion extends javax.swing.JFrame {
 
     private Color bgColor;
-    private Color fgColor;
 
     public InicioSesion() {
         initComponents();
@@ -31,6 +30,9 @@ public class InicioSesion extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
+        btnMinimizar = new javax.swing.JButton();
+        lblUsuarioIncorrecto = new javax.swing.JLabel();
+        lblPasswordIncorrecto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -73,53 +75,81 @@ public class InicioSesion extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
 
+        btnMinimizar.setText("_");
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
+
+        lblUsuarioIncorrecto.setFont(new java.awt.Font("Liberation Sans", 0, 11)); // NOI18N
+        lblUsuarioIncorrecto.setForeground(new java.awt.Color(255, 0, 0));
+        lblUsuarioIncorrecto.setText(" ");
+
+        lblPasswordIncorrecto.setFont(new java.awt.Font("Liberation Sans", 0, 11)); // NOI18N
+        lblPasswordIncorrecto.setForeground(new java.awt.Color(255, 0, 0));
+        lblPasswordIncorrecto.setText(" ");
+
         javax.swing.GroupLayout jPanelBgLayout = new javax.swing.GroupLayout(jPanelBg);
         jPanelBg.setLayout(jPanelBgLayout);
         jPanelBgLayout.setHorizontalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
-                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
-                        .addComponent(lblLogo)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136))))
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanelBgLayout.createSequentialGroup()
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(lblLogo))
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
                     .addGroup(jPanelBgLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                            .addComponent(txtPassword))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblUsuarioIncorrecto))
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblPasswordIncorrecto))))
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32))
         );
         jPanelBgLayout.setVerticalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBgLayout.createSequentialGroup()
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addComponent(lblLogo)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsuarioIncorrecto)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPasswordIncorrecto)
+                .addGap(18, 18, 18)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,9 +181,15 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        //this.lblPasswordIncorrecto.setText("Contraseña incorrecta");
+        //this.lblUsuarioIncorrecto.setText("El usuario no existe");
         this.dispose();
         new Principal().setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void setValueComponents() {
         //Text Field usuario
@@ -163,10 +199,17 @@ public class InicioSesion extends javax.swing.JFrame {
         //Boton Ingresar
         this.btnIngresar.putClientProperty("JButton.buttonType", "roundRect");
     }
+    
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("src/main/resources/icono.png"));
+
+        return retValue;
+    }
 
     public static void main(String args[]) {
 
-        FlatMaterialDarkerContrastIJTheme.setup();
+        FlatMoonlightIJTheme.setup();
         //Configuraciones generales
         UIManager.put("Button.hoverForeground", Color.white);
         UIManager.put("TextComponent.arc",100);
@@ -180,11 +223,14 @@ public class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelBg;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblPasswordIncorrecto;
+    private javax.swing.JLabel lblUsuarioIncorrecto;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
