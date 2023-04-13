@@ -20,12 +20,13 @@ public class Principal extends javax.swing.JFrame {
         jPanelBg = new javax.swing.JPanel();
         jPanelPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblLogo = new javax.swing.JLabel();
         jPanelOpciones = new javax.swing.JPanel();
         btnMesas = new javax.swing.JButton();
-        btnPedidos = new javax.swing.JButton();
-        btnMenu = new javax.swing.JButton();
+        btnVerPedidos = new javax.swing.JButton();
+        btnAgregarPedido = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
         jPanelBarraTitulo = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnMaximizar = new javax.swing.JButton();
@@ -37,34 +38,26 @@ public class Principal extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanelBg.setBackground(new java.awt.Color(0, 0, 0));
+        jPanelBg.setBackground(new java.awt.Color(255, 255, 255));
         jPanelBg.setPreferredSize(new java.awt.Dimension(700, 700));
 
         jLabel1.setFont(new java.awt.Font("NTR", 3, 60)); // NOI18N
         jLabel1.setText("La Fondita");
-
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo1x1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(373, 373, 373)
                 .addComponent(jLabel1)
-                .addGap(291, 291, 291))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addComponent(lblLogo)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnMesas.setText("MESAS");
@@ -76,21 +69,21 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnPedidos.setText("PEDIDOS");
-        btnPedidos.setBorder(null);
-        btnPedidos.setBorderPainted(false);
-        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
+        btnVerPedidos.setText("PEDIDOS ACTIVOS");
+        btnVerPedidos.setBorder(null);
+        btnVerPedidos.setBorderPainted(false);
+        btnVerPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPedidosActionPerformed(evt);
+                btnVerPedidosActionPerformed(evt);
             }
         });
 
-        btnMenu.setText("MENÚ");
-        btnMenu.setBorder(null);
-        btnMenu.setBorderPainted(false);
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarPedido.setText("AGREGAR PEDIDOS");
+        btnAgregarPedido.setBorder(null);
+        btnAgregarPedido.setBorderPainted(false);
+        btnAgregarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
+                btnAgregarPedidoActionPerformed(evt);
             }
         });
 
@@ -103,25 +96,39 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnReportes.setText("REPORTES");
+        btnReportes.setBorder(null);
+        btnReportes.setBorderPainted(false);
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo16x16.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelOpcionesLayout = new javax.swing.GroupLayout(jPanelOpciones);
         jPanelOpciones.setLayout(jPanelOpcionesLayout);
         jPanelOpcionesLayout.setHorizontalGroup(
             jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelOpcionesLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(lblLogo))
             .addComponent(btnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnAgregarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnVerPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanelOpcionesLayout.setVerticalGroup(
             jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOpcionesLayout.createSequentialGroup()
-                .addGap(217, 217, 217)
+                .addGap(6, 6, 6)
+                .addComponent(lblLogo)
+                .addGap(24, 24, 24)
                 .addComponent(btnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVerPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -190,7 +197,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanelBaseLayout.setVerticalGroup(
             jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanelBgLayout = new javax.swing.GroupLayout(jPanelBg);
@@ -209,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanelBgLayout.createSequentialGroup()
                 .addComponent(jPanelBarraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -251,13 +258,13 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_btnMaximizarActionPerformed
 
-    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPedidosActionPerformed
+    private void btnVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPedidosActionPerformed
+        Principal.setPanelBase(new Pedidos());
+    }//GEN-LAST:event_btnVerPedidosActionPerformed
 
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        Principal.setPanelBase(new Menu());
-    }//GEN-LAST:event_btnMenuActionPerformed
+    private void btnAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPedidoActionPerformed
+        Principal.setPanelBase(new Ordenar());
+    }//GEN-LAST:event_btnAgregarPedidoActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         this.dispose();
@@ -283,13 +290,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarPedido;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnMaximizar;
-    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMesas;
     private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton btnPedidos;
+    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVerPedidos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelBarraTitulo;
     private static javax.swing.JPanel jPanelBase;
