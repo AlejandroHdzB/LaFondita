@@ -280,6 +280,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="logo5">
               <Properties>

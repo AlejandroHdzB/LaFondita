@@ -4,6 +4,7 @@ public class Mesas extends javax.swing.JPanel {
 
     public Mesas() {
         initComponents();
+        this.setValueComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -75,6 +76,11 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta1.setText("GENERAR CUENTA");
+        btnCuenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta1ActionPerformed(evt);
+            }
+        });
 
         logo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
 
@@ -335,6 +341,13 @@ public class Mesas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregar6ActionPerformed
 
+    private void btnCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta1ActionPerformed
+        Principal.setPanelBase(new Cuenta());
+    }//GEN-LAST:event_btnCuenta1ActionPerformed
+
+    private void setValueComponents(){
+        this.jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar1;

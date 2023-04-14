@@ -1,10 +1,19 @@
 package itt.Vista;
 
+import itt.DAO.DAOMeserosImpl;
+import itt.Interfaces.DAOCRUD;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class Ordenar extends javax.swing.JPanel {
+
+    private DAOCRUD dao;
+    private DefaultTableModel model;
 
     public Ordenar() {
         initComponents();
         this.setValueComponents();
+        this.setTableContents();
     }
 
     @SuppressWarnings("unchecked")
@@ -18,6 +27,8 @@ public class Ordenar extends javax.swing.JPanel {
         btnPostres = new javax.swing.JButton();
         btnBebidas = new javax.swing.JButton();
         tablaContenido = new javax.swing.JPanel();
+        jScrollPane = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
         acciones = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -36,6 +47,11 @@ public class Ordenar extends javax.swing.JPanel {
         btnEntradas.setText("ENTRADAS");
         btnEntradas.setBorder(null);
         btnEntradas.setBorderPainted(false);
+        btnEntradas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradasActionPerformed(evt);
+            }
+        });
 
         btnPlatosF.setText("PLATOS FUERTES");
         btnPlatosF.setBorder(null);
@@ -64,37 +80,64 @@ public class Ordenar extends javax.swing.JPanel {
         opcionesLayout.setHorizontalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPlatosF, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBebidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionesLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(btnPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPlatosF, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesLayout.createSequentialGroup()
-                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnBebidas, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(btnPostres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPlatosF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+            .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnPlatosF, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        tablaContenido.setBackground(new java.awt.Color(0, 0, 0));
         tablaContenido.setPreferredSize(new java.awt.Dimension(750, 300));
+
+        jScrollPane.setBorder(null);
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NOMBRE", "INGREDIENTES", "PRECIO"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
+        jScrollPane.setViewportView(jTable);
+        if (jTable.getColumnModel().getColumnCount() > 0) {
+            jTable.getColumnModel().getColumn(0).setResizable(false);
+            jTable.getColumnModel().getColumn(1).setResizable(false);
+            jTable.getColumnModel().getColumn(2).setResizable(false);
+            jTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout tablaContenidoLayout = new javax.swing.GroupLayout(tablaContenido);
         tablaContenido.setLayout(tablaContenidoLayout);
         tablaContenidoLayout.setHorizontalGroup(
             tablaContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addComponent(jScrollPane)
         );
         tablaContenidoLayout.setVerticalGroup(
             tablaContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lupa.png"))); // NOI18N
@@ -113,6 +156,11 @@ public class Ordenar extends javax.swing.JPanel {
         jLabel3.setText("ID PRODUCTO:");
 
         btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout accionesLayout = new javax.swing.GroupLayout(acciones);
         acciones.setLayout(accionesLayout);
@@ -163,18 +211,17 @@ public class Ordenar extends javax.swing.JPanel {
         jPanelBgLayout.setHorizontalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
-            .addComponent(acciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tablaContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(acciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelBgLayout.setVerticalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBgLayout.createSequentialGroup()
                 .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(tablaContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(acciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(0, 0, 0)
+                .addComponent(acciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -185,7 +232,7 @@ public class Ordenar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBg, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(jPanelBg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -201,12 +248,46 @@ public class Ordenar extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if (Validations.isNumeric(this.txtID.getText())) {
+
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        if (this.jTable.getRowSelectionAllowed()) {
+            int row = this.jTable.getSelectedRow();
+            String id = String.valueOf(this.jTable.getValueAt(row, 0));
+            this.txtID.setText(id);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
+
+    private void btnEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasActionPerformed
+        DefaultTableModel aux = (DefaultTableModel) this.jTable.getModel(); 
+        try {
+            dao.listar("ANGEL").forEach(m -> aux.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+        this.jTable.setModel(aux);
+    }//GEN-LAST:event_btnEntradasActionPerformed
+
     private void setValueComponents() {
         this.txtBuscar.putClientProperty("JTextField.placeholderText", "Por ID, nombre o precio");
         this.btnAgregar.putClientProperty("JButton.buttonType", "roundRect");
-
+        
+        this.dao = new DAOMeserosImpl();
+        this.model  = (DefaultTableModel) this.jTable.getModel();  
     }
 
+    private void setTableContents() {
+        try {
+            dao.listar().forEach(m -> model.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel acciones;
@@ -220,6 +301,8 @@ public class Ordenar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelBg;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTable jTable;
     private javax.swing.JPanel opciones;
     private javax.swing.JPanel tablaContenido;
     private javax.swing.JTextField txtBuscar;

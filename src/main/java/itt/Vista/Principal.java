@@ -19,7 +19,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanelBg = new javax.swing.JPanel();
         jPanelPrincipal = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jPanelOpciones = new javax.swing.JPanel();
         btnMesas = new javax.swing.JButton();
         btnVerPedidos = new javax.swing.JButton();
@@ -41,8 +41,8 @@ public class Principal extends javax.swing.JFrame {
         jPanelBg.setBackground(new java.awt.Color(255, 255, 255));
         jPanelBg.setPreferredSize(new java.awt.Dimension(700, 700));
 
-        jLabel1.setFont(new java.awt.Font("NTR", 3, 60)); // NOI18N
-        jLabel1.setText("La Fondita");
+        jLabelTitulo.setFont(new java.awt.Font("NTR", 3, 60)); // NOI18N
+        jLabelTitulo.setText("La Fondita");
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
@@ -50,13 +50,13 @@ public class Principal extends javax.swing.JFrame {
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addGap(373, 373, 373)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -276,7 +276,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMesasActionPerformed
 
     private void setValueComponents() {
-        
+        this.bgColor = this.btnMesas.getBackground();
+        Principal.jPanelBase.setBackground(bgColor);
     }
 
     public static void setPanelBase(JPanel panel){
@@ -298,7 +299,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerPedidos;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBarraTitulo;
     private static javax.swing.JPanel jPanelBase;
     private javax.swing.JPanel jPanelBg;
