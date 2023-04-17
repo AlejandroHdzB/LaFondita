@@ -263,22 +263,20 @@ public class Ordenar extends javax.swing.JPanel {
     }//GEN-LAST:event_jTableMouseClicked
 
     private void btnEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasActionPerformed
-        DefaultTableModel aux = (DefaultTableModel) this.jTable.getModel(); 
+        this.removeRowsModel();
         try {
-            dao.listar("ANGEL").forEach(m -> aux.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
+            dao.listar("ANGEL").forEach(m -> model.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
-        this.jTable.setModel(aux);
     }//GEN-LAST:event_btnEntradasActionPerformed
 
     private void setValueComponents() {
         this.txtBuscar.putClientProperty("JTextField.placeholderText", "Por ID, nombre o precio");
         this.btnAgregar.putClientProperty("JButton.buttonType", "roundRect");
-        
+
         this.dao = new DAOMeserosImpl();
-        this.model  = (DefaultTableModel) this.jTable.getModel();  
+        this.model = (DefaultTableModel) this.jTable.getModel();
     }
 
     private void setTableContents() {
@@ -286,6 +284,13 @@ public class Ordenar extends javax.swing.JPanel {
             dao.listar().forEach(m -> model.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        System.out.println(model.getDataVector());
+    }
+    
+    private void removeRowsModel(){
+        while (!model.getDataVector().isEmpty()) {
+            model.removeRow(0);
         }
     }
 

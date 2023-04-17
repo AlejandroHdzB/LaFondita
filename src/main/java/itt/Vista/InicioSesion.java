@@ -1,18 +1,21 @@
 package itt.Vista;
 
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
+//import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
+import itt.DAO.DAOMeserosImpl;
+import itt.Interfaces.DAOBusqueda;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
+//import javax.swing.UIManager;
 
 public class InicioSesion extends javax.swing.JFrame {
 
     private Color bgColor;
-
+    private DAOBusqueda dao;
+    
     public InicioSesion() {
         initComponents();
         this.setValueComponents();
@@ -181,6 +184,14 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        try{
+//            if(dao.buscar(this.txtUsuario, )){
+//                
+//            }
+            
+        }catch(Exception e){
+            
+        }
         //this.lblPasswordIncorrecto.setText("Contraseña incorrecta");
         //this.lblUsuarioIncorrecto.setText("El usuario no existe");
         this.dispose();
@@ -198,6 +209,8 @@ public class InicioSesion extends javax.swing.JFrame {
         this.txtPassword.putClientProperty("JTextField.placeholderText", "Ingrese su contraseña");
         //Boton Ingresar
         this.btnIngresar.putClientProperty("JButton.buttonType", "roundRect");
+        
+        this.dao = new DAOMeserosImpl();
     }
     
     public Image getIconImage() {
@@ -205,20 +218,6 @@ public class InicioSesion extends javax.swing.JFrame {
                 getImage(ClassLoader.getSystemResource("src/main/resources/icono.png"));
 
         return retValue;
-    }
-
-    public static void main(String args[]) {
-
-        FlatMoonlightIJTheme.setup();
-        //Configuraciones generales
-        UIManager.put("Button.hoverForeground", Color.white);
-        UIManager.put("TextComponent.arc",100);
-        UIManager.put("PasswordField.echoChar",'*');
-        UIManager.put("PasswordField.showRevealButton",true);
- 
-        java.awt.EventQueue.invokeLater(() -> {
-            new InicioSesion().setVisible(true);
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

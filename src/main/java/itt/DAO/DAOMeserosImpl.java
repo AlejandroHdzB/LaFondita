@@ -1,6 +1,7 @@
 package itt.DAO;
 
 import itt.AccesoDatos.Conexion;
+import itt.Interfaces.DAOBusqueda;
 import itt.Modelos.Mesero;
 import itt.Interfaces.DAOCRUD;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOMeserosImpl extends Conexion implements DAOCRUD {
+public class DAOMeserosImpl extends Conexion implements DAOCRUD,DAOBusqueda {
 
     @Override
     public List<Mesero> listar() throws Exception {
@@ -75,6 +76,11 @@ public class DAOMeserosImpl extends Conexion implements DAOCRUD {
             this.desconectar();
         }
         return lista;
+    }
+
+    @Override
+    public boolean buscar(String usuario, String contraseña) throws Exception {
+        return true;
     }
 
 }
