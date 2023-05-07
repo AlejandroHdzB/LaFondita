@@ -3,13 +3,11 @@ package itt.Vista;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
-import itt.DAO.DAOMeserosImpl;
 import itt.Interfaces.DAOBusqueda;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-//import javax.swing.UIManager;
 
 public class InicioSesion extends javax.swing.JFrame {
 
@@ -185,9 +183,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         try{
-//            if(dao.buscar(this.txtUsuario, )){
-//                
-//            }
             
         }catch(Exception e){
             
@@ -210,7 +205,6 @@ public class InicioSesion extends javax.swing.JFrame {
         //Boton Ingresar
         this.btnIngresar.putClientProperty("JButton.buttonType", "roundRect");
         
-        this.dao = new DAOMeserosImpl();
     }
     
     public Image getIconImage() {

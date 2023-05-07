@@ -6,9 +6,7 @@ public class Mesero {
     private int idMesero;
     private String nombre;
     private String apellido;
-    private int edad;
-    private char sexo;
-
+    
     public int getIdMesero() {
         return idMesero;
     }
@@ -32,23 +30,5 @@ public class Mesero {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public char getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
-    }
-    
-    
-    
+   
 }

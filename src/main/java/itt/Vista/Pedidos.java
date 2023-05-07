@@ -1,13 +1,47 @@
-
 package itt.Vista;
+
+import itt.DAO.DAOPedidosImpl;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import itt.Interfaces.DAOPedidos;
 
 public class Pedidos extends javax.swing.JPanel {
 
+    private DAOPedidos dao;
+    private DefaultTableModel model;
+
     public Pedidos() {
         initComponents();
+        this.setValueComponents();
     }
 
-    
+    private void setValueComponents() {
+        this.btnCancelar.putClientProperty("JButton.buttonType", "roundRect");
+
+        //Colocar objeto
+        this.dao = new DAOPedidosImpl();
+        this.model = (DefaultTableModel) this.jTable.getModel();
+        this.setTableContents();
+    }
+
+    private void setTableContents() {
+        try {
+            dao.listar().forEach(o -> model.addRow(new Object[]{
+                o.getIdVenta(),
+                o.getIdPlatillo().getNombre(),
+                o.getCantidad(),
+                (o.getCantidad() * o.getIdPlatillo().getPrecio())}));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    private void removeRowsModel() {
+        while (!model.getDataVector().isEmpty()) {
+            model.removeRow(0);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

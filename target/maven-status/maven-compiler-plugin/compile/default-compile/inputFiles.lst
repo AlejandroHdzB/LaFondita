@@ -1,2 +1,13 @@
 /home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/Principal.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/Ordenar.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/AccesoDatos/Conexion.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/DAO/DAOMeserosImpl.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/Cuenta.java
 /home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/InicioSesion.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Interfaces/DAOBusqueda.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Interfaces/DAOCRUD.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/Pedidos.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/Validations.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Vista/Mesas.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Modelos/Mesero.java
+/home/alejandro/NetBeansProjects/LaFondita/src/main/java/itt/Arranque/Main.java

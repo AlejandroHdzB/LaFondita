@@ -1,19 +1,18 @@
 package itt.Vista;
 
-import itt.DAO.DAOMeserosImpl;
-import itt.Interfaces.DAOCRUD;
+import itt.DAO.DAOPlatillosImpl;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import itt.Interfaces.DAOPlatillos;
 
 public class Ordenar extends javax.swing.JPanel {
 
-    private DAOCRUD dao;
+    private DAOPlatillos dao;
     private DefaultTableModel model;
 
     public Ordenar() {
         initComponents();
         this.setValueComponents();
-        this.setTableContents();
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +64,11 @@ public class Ordenar extends javax.swing.JPanel {
         btnPostres.setText("POSTRES");
         btnPostres.setBorder(null);
         btnPostres.setBorderPainted(false);
+        btnPostres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostresActionPerformed(evt);
+            }
+        });
 
         btnBebidas.setText("BEBIDAS");
         btnBebidas.setBorder(null);
@@ -105,7 +109,7 @@ public class Ordenar extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "NOMBRE", "INGREDIENTES", "PRECIO"
+                "ID", "NOMBRE", "TIPO", "PRECIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -237,11 +241,11 @@ public class Ordenar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBebidasActionPerformed
-
+        this.setTableContentsType("bebida");
     }//GEN-LAST:event_btnBebidasActionPerformed
 
     private void btnPlatosFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatosFActionPerformed
-
+        this.setTableContentsType("fuerte");
     }//GEN-LAST:event_btnPlatosFActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -263,29 +267,46 @@ public class Ordenar extends javax.swing.JPanel {
     }//GEN-LAST:event_jTableMouseClicked
 
     private void btnEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasActionPerformed
-        this.removeRowsModel();
-        try {
-            dao.listar("ANGEL").forEach(m -> model.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        this.setTableContentsType("entrada");
     }//GEN-LAST:event_btnEntradasActionPerformed
+
+    private void btnPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostresActionPerformed
+        this.setTableContentsType("postre");
+    }//GEN-LAST:event_btnPostresActionPerformed
 
     private void setValueComponents() {
         this.txtBuscar.putClientProperty("JTextField.placeholderText", "Por ID, nombre o precio");
         this.btnAgregar.putClientProperty("JButton.buttonType", "roundRect");
 
-        this.dao = new DAOMeserosImpl();
+        //Colocar objeto
+        this.dao = new DAOPlatillosImpl();
         this.model = (DefaultTableModel) this.jTable.getModel();
+        this.setTableContents();
     }
 
     private void setTableContents() {
         try {
-            dao.listar().forEach(m -> model.addRow(new Object[]{m.getIdMesero(), m.getNombre(), m.getApellido(), m.getEdad()}));
+            dao.listarTodos().forEach(p -> model.addRow(new Object[]{
+                p.getIdPlatillo(),
+                p.getNombre(),
+                p.getTipo(),
+                p.getPrecio()}));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        System.out.println(model.getDataVector());
+    }
+    
+    private void setTableContentsType(String tipo){
+        this.removeRowsModel();
+        try {
+            dao.listar(tipo).forEach(p -> model.addRow(new Object[]{
+                p.getIdPlatillo(),
+                p.getNombre(),
+                p.getTipo(),
+                p.getPrecio()}));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
     
     private void removeRowsModel(){
