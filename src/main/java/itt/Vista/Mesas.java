@@ -1,6 +1,21 @@
 package itt.Vista;
 
+import itt.DAO.DAOMesasImpl;
+import itt.DAO.DAOVentasImpl;
+import itt.Interfaces.DAOMesas;
+import itt.Interfaces.DAOVentas;
+import itt.Modelos.Mesa;
+import itt.Modelos.Venta;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class Mesas extends javax.swing.JPanel {
+
+    private Mesa mesas[];
+    private Venta ventasActivas[];
+    DAOMesas daoMesa;
+    DAOVentas daoVenta;
 
     public Mesas() {
         initComponents();
@@ -46,6 +61,14 @@ public class Mesas extends javax.swing.JPanel {
         btnAgregar6 = new javax.swing.JButton();
         rB6 = new javax.swing.JRadioButton();
         lblMesa6 = new javax.swing.JLabel();
+        lblMesa7 = new javax.swing.JLabel();
+        rB7 = new javax.swing.JRadioButton();
+        btnAgregar7 = new javax.swing.JButton();
+        btnCuenta7 = new javax.swing.JButton();
+        lblMesa8 = new javax.swing.JLabel();
+        rB8 = new javax.swing.JRadioButton();
+        btnAgregar8 = new javax.swing.JButton();
+        btnCuenta8 = new javax.swing.JButton();
 
         jScrollPane.setBorder(null);
         jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -160,6 +183,34 @@ public class Mesas extends javax.swing.JPanel {
         lblMesa6.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa6.setText("MESA 6");
 
+        lblMesa7.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        lblMesa7.setText("MESA 7");
+
+        rB7.setText("DISPONIBLE");
+
+        btnAgregar7.setText("AGREGAR PEDIDO");
+        btnAgregar7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar7ActionPerformed(evt);
+            }
+        });
+
+        btnCuenta7.setText("GENERAR CUENTA");
+
+        lblMesa8.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        lblMesa8.setText("MESA 8");
+
+        rB8.setText("DISPONIBLE");
+
+        btnAgregar8.setText("AGREGAR PEDIDO");
+        btnAgregar8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar8ActionPerformed(evt);
+            }
+        });
+
+        btnCuenta8.setText("GENERAR CUENTA");
+
         javax.swing.GroupLayout jPanelBgLayout = new javax.swing.GroupLayout(jPanelBg);
         jPanelBg.setLayout(jPanelBgLayout);
         jPanelBgLayout.setHorizontalGroup(
@@ -195,10 +246,24 @@ public class Mesas extends javax.swing.JPanel {
                             .addComponent(rB5)
                             .addComponent(btnAgregar5)
                             .addComponent(btnCuenta5)))
-                    .addComponent(logo4))
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addComponent(logo4)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMesa7)
+                            .addComponent(rB7)
+                            .addComponent(btnAgregar7)
+                            .addComponent(btnCuenta7))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logo8)
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addComponent(logo8)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMesa8)
+                            .addComponent(rB8)
+                            .addComponent(btnAgregar8)
+                            .addComponent(btnCuenta8)))
                     .addGroup(jPanelBgLayout.createSequentialGroup()
                         .addComponent(logo7)
                         .addGap(18, 18, 18)
@@ -295,7 +360,23 @@ public class Mesas extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo4)
-                    .addComponent(logo8))
+                    .addComponent(logo8)
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addComponent(lblMesa7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rB7)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar7)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCuenta7))
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addComponent(lblMesa8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rB8)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar8)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCuenta8)))
                 .addGap(23, 23, 23))
         );
 
@@ -318,7 +399,15 @@ public class Mesas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        Principal.setPanelBase(new Ordenar());
+        try {
+            if (daoMesa.verEstado(mesas[0].getIdMesa()) == 1) {
+                ventasActivas[0] = new Venta();
+                ventasActivas[0].setIdVenta(daoVenta.agregar());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        Principal.setPanelBase(new Ordenar(1, ventasActivas[0].getIdVenta()));
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
@@ -345,10 +434,26 @@ public class Mesas extends javax.swing.JPanel {
         Principal.setPanelBase(new Cuenta());
     }//GEN-LAST:event_btnCuenta1ActionPerformed
 
-    private void setValueComponents(){
-        this.jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
-    }
+    private void btnAgregar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar7ActionPerformed
 
+    private void btnAgregar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar8ActionPerformed
+
+    private void setValueComponents() {
+        this.jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+
+        this.daoMesa = new DAOMesasImpl();
+        this.daoVenta = new DAOVentasImpl();
+
+        try {
+            this.mesas = daoMesa.listar();
+        } catch (Exception ex) {
+        }
+        this.ventasActivas = new Venta[8];
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnAgregar2;
@@ -356,12 +461,16 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JButton btnAgregar4;
     private javax.swing.JButton btnAgregar5;
     private javax.swing.JButton btnAgregar6;
+    private javax.swing.JButton btnAgregar7;
+    private javax.swing.JButton btnAgregar8;
     private javax.swing.JButton btnCuenta1;
     private javax.swing.JButton btnCuenta2;
     private javax.swing.JButton btnCuenta3;
     private javax.swing.JButton btnCuenta4;
     private javax.swing.JButton btnCuenta5;
     private javax.swing.JButton btnCuenta6;
+    private javax.swing.JButton btnCuenta7;
+    private javax.swing.JButton btnCuenta8;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBg;
     private javax.swing.JScrollPane jScrollPane;
@@ -371,6 +480,8 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JLabel lblMesa4;
     private javax.swing.JLabel lblMesa5;
     private javax.swing.JLabel lblMesa6;
+    private javax.swing.JLabel lblMesa7;
+    private javax.swing.JLabel lblMesa8;
     private javax.swing.JLabel logo1;
     private javax.swing.JLabel logo2;
     private javax.swing.JLabel logo3;
@@ -385,5 +496,7 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JRadioButton rB4;
     private javax.swing.JRadioButton rB5;
     private javax.swing.JRadioButton rB6;
+    private javax.swing.JRadioButton rB7;
+    private javax.swing.JRadioButton rB8;
     // End of variables declaration//GEN-END:variables
 }

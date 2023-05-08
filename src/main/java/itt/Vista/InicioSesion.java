@@ -3,17 +3,20 @@ package itt.Vista;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
-import itt.Interfaces.DAOBusqueda;
+import itt.DAO.DAOMeserosImpl;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import itt.Interfaces.DAOMeseros;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 public class InicioSesion extends javax.swing.JFrame {
 
     private Color bgColor;
-    private DAOBusqueda dao;
-    
+    private DAOMeseros dao;
+
     public InicioSesion() {
         initComponents();
         this.setValueComponents();
@@ -37,7 +40,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(400, 600));
 
         btnSalir.setText("X");
         btnSalir.setBorder(null);
@@ -75,6 +77,11 @@ public class InicioSesion extends javax.swing.JFrame {
         txtUsuario.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
 
         txtPassword.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
 
         btnMinimizar.setText("_");
         btnMinimizar.setBorder(null);
@@ -182,20 +189,20 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        try{
-            
-        }catch(Exception e){
-            
-        }
-        //this.lblPasswordIncorrecto.setText("Contraseña incorrecta");
-        //this.lblUsuarioIncorrecto.setText("El usuario no existe");
-        this.dispose();
-        new Principal().setVisible(true);
+        this.codigoIngresar();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        char tecla = evt.getKeyChar();
+
+        if (tecla == KeyEvent.VK_ENTER) {
+            this.codigoIngresar();
+        }
+    }//GEN-LAST:event_txtPasswordKeyTyped
 
     private void setValueComponents() {
         //Text Field usuario
@@ -204,9 +211,46 @@ public class InicioSesion extends javax.swing.JFrame {
         this.txtPassword.putClientProperty("JTextField.placeholderText", "Ingrese su contraseña");
         //Boton Ingresar
         this.btnIngresar.putClientProperty("JButton.buttonType", "roundRect");
-        
+
+        this.dao = new DAOMeserosImpl();
     }
-    
+
+    private void codigoIngresar() {
+        String usuario = this.txtUsuario.getText();
+        char pass[] = this.txtPassword.getPassword();
+        String contraseña = String.copyValueOf(pass);
+
+        this.lblUsuarioIncorrecto.setText("");
+        this.lblPasswordIncorrecto.setText("");
+
+        if (!usuario.isEmpty()) {
+            if (!contraseña.isEmpty()) {
+                try {
+                    int estado = dao.buscar(usuario, contraseña);
+                    switch (estado) {
+                        case 1:
+                            this.lblUsuarioIncorrecto.setText("El usuario no existe");
+                            break;
+                        case 2:
+                            this.lblPasswordIncorrecto.setText("Contraseña incorrecta");
+                            break;
+                        default:
+                            this.dispose();
+                            new Principal(usuario).setVisible(true);
+                            break;
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor introduzca su contraseña");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor introduzca su usuario");
+        }
+
+    }
+
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("src/main/resources/icono.png"));

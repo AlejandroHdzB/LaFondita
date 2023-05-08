@@ -8,10 +8,12 @@ import javax.swing.JPanel;
 public class Principal extends javax.swing.JFrame {
 
     private Color bgColor;
+    public static String usuario;
     
-    public Principal() {
+    public Principal(String usuario) {
         initComponents();
         this.setValueComponents();
+        Principal.usuario = usuario;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -90,11 +90,29 @@
                                   <Component id="btnCuenta5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="logo4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="logo4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblMesa7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rB7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAgregar7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCuenta7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="logo8" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="logo8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblMesa8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rB8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAgregar8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCuenta8" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="logo7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -212,6 +230,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="logo4" min="-2" max="-2" attributes="0"/>
                           <Component id="logo8" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblMesa7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="rB7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnAgregar7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnCuenta7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lblMesa8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="rB8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnAgregar8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnCuenta8" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
@@ -440,6 +476,58 @@
                   <Font name="Liberation Sans" size="15" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="MESA 6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblMesa7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Liberation Sans" size="15" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="MESA 7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rB7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAgregar7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="AGREGAR PEDIDO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregar7ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCuenta7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblMesa8">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Liberation Sans" size="15" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="MESA 8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rB8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAgregar8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="AGREGAR PEDIDO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregar8ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCuenta8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
             </Component>
           </SubComponents>

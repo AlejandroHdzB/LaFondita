@@ -7,4 +7,5 @@ public interface DAOPlatillos {
  
     public List<Platillo> listarTodos() throws Exception;
     public List<Platillo> listar(String tipo) throws Exception;
+    public Platillo buscarID(String id) throws Exception;
 }

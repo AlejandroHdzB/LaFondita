@@ -1,6 +1,6 @@
 package itt.Modelos;
 
-public class Pedido extends Object{
+public class Pedido {
     private Platillo idPlatillo;
     private int idVenta;
     private int idMesa;
