@@ -50,11 +50,6 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
     }
 
     @Override
-    public void eliminar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public boolean agregar(int idVenta, String platillo, int cantidad, int mesa) throws Exception {
         String consulta = "INSERT INTO pedidos (idplatillo,idventa,idmesa,cantidad,subtotal,estado) "
                 + "VALUES (?,?,?,?,?,DEFAULT)";
@@ -81,6 +76,16 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
             this.desconectar();
         }
         return true;
+    }
+
+    @Override
+    public List<Pedido> listar(int idVenta) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Pedido eliminar(int idVenta, String idProducto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

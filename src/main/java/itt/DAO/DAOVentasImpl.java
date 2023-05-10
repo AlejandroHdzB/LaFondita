@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DAOVentasImpl extends Conexion implements DAOVentas{
-
+    
     @Override
     public int agregar() throws Exception {
         String consultaIns = "INSERT INTO ventas (fecha,hora,total,idmesero) "

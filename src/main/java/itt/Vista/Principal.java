@@ -1,5 +1,6 @@
 package itt.Vista;
 
+import itt.Modelos.Venta;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -9,6 +10,7 @@ public class Principal extends javax.swing.JFrame {
 
     private Color bgColor;
     public static String usuario;
+    public static int ventasActivas[] = new int[8];
     
     public Principal(String usuario) {
         initComponents();

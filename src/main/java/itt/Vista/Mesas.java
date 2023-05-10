@@ -3,19 +3,13 @@ package itt.Vista;
 import itt.DAO.DAOMesasImpl;
 import itt.DAO.DAOVentasImpl;
 import itt.Interfaces.DAOMesas;
-import itt.Interfaces.DAOVentas;
 import itt.Modelos.Mesa;
-import itt.Modelos.Venta;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Mesas extends javax.swing.JPanel {
 
     private Mesa mesas[];
-    private Venta ventasActivas[];
     DAOMesas daoMesa;
-    DAOVentas daoVenta;
 
     public Mesas() {
         initComponents();
@@ -398,36 +392,39 @@ public class Mesas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+    private void setValueVenta(int n){
         try {
-            if (daoMesa.verEstado(mesas[0].getIdMesa()) == 1) {
-                ventasActivas[0] = new Venta();
-                ventasActivas[0].setIdVenta(daoVenta.agregar());
+            if (daoMesa.verEstado(mesas[n - 1].getIdMesa()) == 1) {
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        Principal.setPanelBase(new Ordenar(1, ventasActivas[0].getIdVenta()));
+        Principal.setPanelBase(new Ordenar(n));
+    }
+    
+    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+        Principal.setPanelBase(new Ordenar(1));
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(2));
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(3));
     }//GEN-LAST:event_btnAgregar3ActionPerformed
 
     private void btnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar4ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(4));
     }//GEN-LAST:event_btnAgregar4ActionPerformed
 
     private void btnAgregar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar5ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(5));
     }//GEN-LAST:event_btnAgregar5ActionPerformed
 
     private void btnAgregar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar6ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(6));
     }//GEN-LAST:event_btnAgregar6ActionPerformed
 
     private void btnCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta1ActionPerformed
@@ -435,24 +432,23 @@ public class Mesas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCuenta1ActionPerformed
 
     private void btnAgregar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar7ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(7));
     }//GEN-LAST:event_btnAgregar7ActionPerformed
 
     private void btnAgregar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar8ActionPerformed
-        // TODO add your handling code here:
+        Principal.setPanelBase(new Ordenar(8));
     }//GEN-LAST:event_btnAgregar8ActionPerformed
 
     private void setValueComponents() {
         this.jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         this.daoMesa = new DAOMesasImpl();
-        this.daoVenta = new DAOVentasImpl();
 
         try {
             this.mesas = daoMesa.listar();
         } catch (Exception ex) {
+            //HACER ALGO
         }
-        this.ventasActivas = new Venta[8];
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar1;

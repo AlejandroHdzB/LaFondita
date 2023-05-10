@@ -2,15 +2,19 @@ package itt.Vista;
 
 import itt.DAO.DAOPedidosImpl;
 import itt.DAO.DAOPlatillosImpl;
+import itt.DAO.DAOVentasImpl;
 import itt.Interfaces.DAOPedidos;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import itt.Interfaces.DAOPlatillos;
+import itt.Interfaces.DAOVentas;
+import static itt.Vista.Principal.ventasActivas;
 
 public class Ordenar extends javax.swing.JPanel {
 
     private DAOPlatillos daoPlatillos;
     private DAOPedidos daoPedidos;
+    private DAOVentas daoVenta;
     private DefaultTableModel model;
     private int idMesa;
     private int idVenta;
@@ -20,12 +24,11 @@ public class Ordenar extends javax.swing.JPanel {
         this.setValueComponents();
     }
 
-    public Ordenar(int idMesa, int idVenta) {
+    public Ordenar(int idMesa) {
         initComponents();
         this.setValueComponents();
         this.idMesa = idMesa;
         this.txtMesa.setText(String.valueOf(this.idMesa));
-        this.idVenta = idVenta;
     }
 
     @SuppressWarnings("unchecked")
@@ -291,15 +294,32 @@ public class Ordenar extends javax.swing.JPanel {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String idPla = this.txtID.getText();
-        int cant = Integer.parseInt(this.txtCantidad.getText());
-        int table = Integer.parseInt(this.txtMesa.getText());
+        String cant = this.txtCantidad.getText();
+        int m = Integer.parseInt(this.txtMesa.getText());
 
         try {
-            if (daoPedidos.agregar(idVenta, idPla, cant, table)) {
-                JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
+            if (daoPlatillos.buscarID(idPla) != null) {
+                if (Validations.isNumeric(cant)) {
+                    int c = Integer.parseInt(cant);
+
+                    if (ventasActivas[m - 1] == 0) {
+                        ventasActivas[m - 1] = daoVenta.agregar();
+                    }
+
+                    idVenta = ventasActivas[m - 1];
+
+                    if (daoPedidos.agregar(idVenta, idPla, c, m)) {
+                        JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al agregar pedido");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cantidad incorrecta");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Error al agregar pedido");
+                JOptionPane.showMessageDialog(null, "ID de producto no valido");
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -332,6 +352,7 @@ public class Ordenar extends javax.swing.JPanel {
         this.setTableContents();
 
         this.daoPedidos = new DAOPedidosImpl();
+        this.daoVenta = new DAOVentasImpl();
     }
 
     private void setTableContents() {
