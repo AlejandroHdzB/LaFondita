@@ -1,19 +1,65 @@
 package itt.Vista;
 
 import itt.DAO.DAOMesasImpl;
-import itt.DAO.DAOVentasImpl;
 import itt.Interfaces.DAOMesas;
 import itt.Modelos.Mesa;
-import javax.swing.JOptionPane;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class Mesas extends javax.swing.JPanel {
 
-    private Mesa mesas[];
-    DAOMesas daoMesa;
+    private List<Mesa> mesas;
+    private DAOMesas daoMesa;
+    private JRadioButton disponibilidad[];
+    private JButton btnCuentas[];
 
     public Mesas() {
         initComponents();
         this.setValueComponents();
+        this.generarArreglos();
+        this.setValuesArrays();
+        
+    }
+    
+    private void setValuesArrays(){
+        for(Mesa m : mesas){
+            int idMesa = m.getIdMesa();
+            if(m.getEstado() == 0){
+                this.disponibilidad[idMesa - 1].setSelected(true);
+            }else{
+                this.disponibilidad[idMesa - 1].setSelected(false);
+            }
+            if(Principal.ventasActivas[idMesa - 1] == 0){
+                this.btnCuentas[idMesa - 1].setEnabled(false);
+            }else{
+                this.btnCuentas[idMesa - 1].setEnabled(true);
+            }
+            this.disponibilidad[idMesa - 1].setEnabled(false);
+        }
+    }
+
+    private void generarArreglos() {
+        disponibilidad = new JRadioButton[8];
+        this.disponibilidad[0] = this.rB1;
+        this.disponibilidad[1] = this.rB2;
+        this.disponibilidad[2] = this.rB3;
+        this.disponibilidad[3] = this.rB4;
+        this.disponibilidad[4] = this.rB5;
+        this.disponibilidad[5] = this.rB6;
+        this.disponibilidad[6] = this.rB7;
+        this.disponibilidad[7] = this.rB8;
+ 
+        btnCuentas = new JButton[8];
+        this.btnCuentas[0] = this.btnCuenta1;
+        this.btnCuentas[1] = this.btnCuenta2;
+        this.btnCuentas[2] = this.btnCuenta3;
+        this.btnCuentas[3] = this.btnCuenta4;
+        this.btnCuentas[4] = this.btnCuenta5;
+        this.btnCuentas[5] = this.btnCuenta6;
+        this.btnCuentas[6] = this.btnCuenta7;
+        this.btnCuentas[7] = this.btnCuenta8;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -77,7 +123,7 @@ public class Mesas extends javax.swing.JPanel {
         lblMesa1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa1.setText("MESA 1");
 
-        rB1.setText("DISPONIBLE");
+        rB1.setText("OCUPADA");
 
         logo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
 
@@ -110,7 +156,7 @@ public class Mesas extends javax.swing.JPanel {
         lblMesa2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa2.setText("MESA 2");
 
-        rB2.setText("DISPONIBLE");
+        rB2.setText("OCUPADA");
 
         btnAgregar2.setText("AGREGAR PEDIDO");
         btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
@@ -120,11 +166,16 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta2.setText("GENERAR CUENTA");
+        btnCuenta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta2ActionPerformed(evt);
+            }
+        });
 
         lblMesa3.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa3.setText("MESA 3");
 
-        rB3.setText("DISPONIBLE");
+        rB3.setText("OCUPADA");
 
         btnAgregar3.setText("AGREGAR PEDIDO");
         btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
@@ -134,11 +185,16 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta3.setText("GENERAR CUENTA");
+        btnCuenta3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta3ActionPerformed(evt);
+            }
+        });
 
         lblMesa4.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa4.setText("MESA 4");
 
-        rB4.setText("DISPONIBLE");
+        rB4.setText("OCUPADA");
 
         btnAgregar4.setText("AGREGAR PEDIDO");
         btnAgregar4.addActionListener(new java.awt.event.ActionListener() {
@@ -148,11 +204,16 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta4.setText("GENERAR CUENTA");
+        btnCuenta4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta4ActionPerformed(evt);
+            }
+        });
 
         lblMesa5.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa5.setText("MESA 5");
 
-        rB5.setText("DISPONIBLE");
+        rB5.setText("OCUPADA");
 
         btnAgregar5.setText("AGREGAR PEDIDO");
         btnAgregar5.addActionListener(new java.awt.event.ActionListener() {
@@ -162,8 +223,18 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta5.setText("GENERAR CUENTA");
+        btnCuenta5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta5ActionPerformed(evt);
+            }
+        });
 
         btnCuenta6.setText("GENERAR CUENTA");
+        btnCuenta6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta6ActionPerformed(evt);
+            }
+        });
 
         btnAgregar6.setText("AGREGAR PEDIDO");
         btnAgregar6.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +243,7 @@ public class Mesas extends javax.swing.JPanel {
             }
         });
 
-        rB6.setText("DISPONIBLE");
+        rB6.setText("OCUPADA");
 
         lblMesa6.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa6.setText("MESA 6");
@@ -180,7 +251,7 @@ public class Mesas extends javax.swing.JPanel {
         lblMesa7.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa7.setText("MESA 7");
 
-        rB7.setText("DISPONIBLE");
+        rB7.setText("OCUPADA");
 
         btnAgregar7.setText("AGREGAR PEDIDO");
         btnAgregar7.addActionListener(new java.awt.event.ActionListener() {
@@ -190,11 +261,16 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta7.setText("GENERAR CUENTA");
+        btnCuenta7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta7ActionPerformed(evt);
+            }
+        });
 
         lblMesa8.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa8.setText("MESA 8");
 
-        rB8.setText("DISPONIBLE");
+        rB8.setText("OCUPADA");
 
         btnAgregar8.setText("AGREGAR PEDIDO");
         btnAgregar8.addActionListener(new java.awt.event.ActionListener() {
@@ -204,6 +280,11 @@ public class Mesas extends javax.swing.JPanel {
         });
 
         btnCuenta8.setText("GENERAR CUENTA");
+        btnCuenta8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuenta8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBgLayout = new javax.swing.GroupLayout(jPanelBg);
         jPanelBg.setLayout(jPanelBgLayout);
@@ -392,17 +473,7 @@ public class Mesas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setValueVenta(int n){
-        try {
-            if (daoMesa.verEstado(mesas[n - 1].getIdMesa()) == 1) {
-                
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-        Principal.setPanelBase(new Ordenar(n));
-    }
-    
+
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
         Principal.setPanelBase(new Ordenar(1));
     }//GEN-LAST:event_btnAgregar1ActionPerformed
@@ -428,7 +499,7 @@ public class Mesas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregar6ActionPerformed
 
     private void btnCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta1ActionPerformed
-        Principal.setPanelBase(new Cuenta());
+        Principal.setPanelBase(new Cuenta(1));
     }//GEN-LAST:event_btnCuenta1ActionPerformed
 
     private void btnAgregar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar7ActionPerformed
@@ -438,6 +509,34 @@ public class Mesas extends javax.swing.JPanel {
     private void btnAgregar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar8ActionPerformed
         Principal.setPanelBase(new Ordenar(8));
     }//GEN-LAST:event_btnAgregar8ActionPerformed
+
+    private void btnCuenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta2ActionPerformed
+        Principal.setPanelBase(new Cuenta(2));
+    }//GEN-LAST:event_btnCuenta2ActionPerformed
+
+    private void btnCuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta3ActionPerformed
+        Principal.setPanelBase(new Cuenta(3));
+    }//GEN-LAST:event_btnCuenta3ActionPerformed
+
+    private void btnCuenta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta4ActionPerformed
+        Principal.setPanelBase(new Cuenta(4));
+    }//GEN-LAST:event_btnCuenta4ActionPerformed
+
+    private void btnCuenta5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta5ActionPerformed
+        Principal.setPanelBase(new Cuenta(5));
+    }//GEN-LAST:event_btnCuenta5ActionPerformed
+
+    private void btnCuenta6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta6ActionPerformed
+        Principal.setPanelBase(new Cuenta(6));
+    }//GEN-LAST:event_btnCuenta6ActionPerformed
+
+    private void btnCuenta7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta7ActionPerformed
+        Principal.setPanelBase(new Cuenta(7));
+    }//GEN-LAST:event_btnCuenta7ActionPerformed
+
+    private void btnCuenta8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta8ActionPerformed
+        Principal.setPanelBase(new Cuenta(8));
+    }//GEN-LAST:event_btnCuenta8ActionPerformed
 
     private void setValueComponents() {
         this.jScrollPane.getVerticalScrollBar().setUnitIncrement(16);

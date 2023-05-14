@@ -6,6 +6,8 @@ import itt.Modelos.Mesa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DAOMesasImpl extends Conexion implements DAOMesas {
 
@@ -39,24 +41,23 @@ public class DAOMesasImpl extends Conexion implements DAOMesas {
     }
 
     @Override
-    public Mesa[] listar() throws Exception {
-        String consulta = "SELECT * FROM mesas";
-        Mesa mesas[] = null;
-        int i = 0;
+    public List<Mesa> listar() throws Exception {
+        String consulta = "SELECT idmesa,asientos,estado FROM mesas";
+        List<Mesa> mesas;
         try {
             this.conectar();
             try {
                 ResultSet rs;
                 try (PreparedStatement st = conexion.prepareStatement(consulta)) {
                     rs = st.executeQuery();
-                    mesas = new Mesa[8];
+                    mesas = new ArrayList<>();
                     while (rs.next()) {
                         Mesa m = new Mesa();
                         m.setIdMesa(rs.getInt(1));
                         m.setAsientos(rs.getInt(2));
                         m.setEstado(rs.getInt(3));
-
-                        mesas[i] = m;
+                        
+                        mesas.add(m);
                     }
                 }
                 rs.close();
@@ -73,15 +74,16 @@ public class DAOMesasImpl extends Conexion implements DAOMesas {
     }
 
     @Override
-    public boolean actualizarEstado(int id) throws Exception {
-        String consulta = "UPDATE mesas SET estado = 0 "
+    public boolean actualizarEstado(int id, int estado) throws Exception {
+        String consulta = "UPDATE mesas SET estado = ? "
                 + "WHERE idmesa = ?";
 
         try {
             this.conectar();
             int rs;
             try (PreparedStatement st = conexion.prepareStatement(consulta)) {
-                st.setInt(1, id);
+                st.setInt(1, estado);
+                st.setInt(2, id);
                 rs = st.executeUpdate();
                 if(rs == 0){
                     return false;

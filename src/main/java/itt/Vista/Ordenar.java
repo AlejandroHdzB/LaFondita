@@ -1,23 +1,30 @@
 package itt.Vista;
 
+import itt.DAO.DAOMesasImpl;
 import itt.DAO.DAOPedidosImpl;
 import itt.DAO.DAOPlatillosImpl;
 import itt.DAO.DAOVentasImpl;
+import itt.Interfaces.DAOMesas;
 import itt.Interfaces.DAOPedidos;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import itt.Interfaces.DAOPlatillos;
 import itt.Interfaces.DAOVentas;
 import static itt.Vista.Principal.ventasActivas;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class Ordenar extends javax.swing.JPanel {
 
     private DAOPlatillos daoPlatillos;
     private DAOPedidos daoPedidos;
+    private DAOMesas daoMesa;
     private DAOVentas daoVenta;
-    private DefaultTableModel model;
-    private int idMesa;
+    private DefaultTableModel modelTabla;
+    private DefaultComboBoxModel modelBox;
     private int idVenta;
+    private int idMesa;
 
     public Ordenar() {
         initComponents();
@@ -27,8 +34,8 @@ public class Ordenar extends javax.swing.JPanel {
     public Ordenar(int idMesa) {
         initComponents();
         this.setValueComponents();
-        this.idMesa = idMesa;
-        this.txtMesa.setText(String.valueOf(this.idMesa));
+        this.jComboBoxMesas.setSelectedIndex(idMesa - 1);
+        this.jComboBoxMesas.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -53,9 +60,9 @@ public class Ordenar extends javax.swing.JPanel {
         txtID = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txtMesa = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
+        jComboBoxMesas = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(750, 560));
 
@@ -195,35 +202,35 @@ public class Ordenar extends javax.swing.JPanel {
         accionesLayout.setHorizontalGroup(
             accionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accionesLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(accionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(accionesLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxMesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113))
                     .addGroup(accionesLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(accionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(accionesLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(accionesLayout.createSequentialGroup()
-                                .addGroup(accionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAgregar)
-                                    .addComponent(jLabel1))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(51, 51, 51))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(accionesLayout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(accionesLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         accionesLayout.setVerticalGroup(
             accionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,12 +248,12 @@ public class Ordenar extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxMesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAgregar)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelBgLayout = new javax.swing.GroupLayout(jPanelBg);
@@ -265,7 +272,7 @@ public class Ordenar extends javax.swing.JPanel {
                 .addComponent(tablaContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(acciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -276,7 +283,7 @@ public class Ordenar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBg, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+            .addComponent(jPanelBg, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -293,33 +300,44 @@ public class Ordenar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String idPla = this.txtID.getText();
-        String cant = this.txtCantidad.getText();
-        int m = Integer.parseInt(this.txtMesa.getText());
-
         try {
-            if (daoPlatillos.buscarID(idPla) != null) {
-                if (Validations.isNumeric(cant)) {
-                    int c = Integer.parseInt(cant);
+            if (!this.txtID.getText().isEmpty() && !this.txtCantidad.getText().isEmpty()) {
+                String idPla = this.txtID.getText();
+                if (daoPlatillos.buscarID(idPla) != null) {
+                    String cant = this.txtCantidad.getText();
+                    if (Validations.isNumeric(cant)) {
+                        if (this.jComboBoxMesas.getSelectedItem() != null) {
+                            this.idMesa = Integer.parseInt(String.valueOf(this.jComboBoxMesas.getSelectedItem()));
+                            if (daoPlatillos.buscarID(idPla) != null) {
 
-                    if (ventasActivas[m - 1] == 0) {
-                        ventasActivas[m - 1] = daoVenta.agregar();
-                    }
+                                int c = Integer.parseInt(cant);
 
-                    idVenta = ventasActivas[m - 1];
+                                if (ventasActivas[idMesa - 1] == 0) {
+                                    ventasActivas[idMesa - 1] = daoVenta.agregar();
+                                }
+                                idVenta = ventasActivas[idMesa - 1];
 
-                    if (daoPedidos.agregar(idVenta, idPla, c, m)) {
-                        JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
+                                if (daoPedidos.agregar(idVenta, idPla, c, idMesa)) {
+                                    JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
+                                    daoMesa.actualizarEstado(idMesa, 0);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Error al agregar pedido");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ID de producto no valido");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ninguna mesa seleccionada");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error al agregar pedido");
+                        JOptionPane.showMessageDialog(null, "Cantidad no valida");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Cantidad incorrecta");
+                    JOptionPane.showMessageDialog(null, "Platillo no valido");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "ID de producto no valido");
+                JOptionPane.showMessageDialog(null, "Favor de rellenar todos los campos");
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -348,16 +366,39 @@ public class Ordenar extends javax.swing.JPanel {
 
         //Colocar objeto
         this.daoPlatillos = new DAOPlatillosImpl();
-        this.model = (DefaultTableModel) this.jTable.getModel();
+        this.modelTabla = (DefaultTableModel) this.jTable.getModel();
         this.setTableContents();
+        this.setFormatTable();
 
         this.daoPedidos = new DAOPedidosImpl();
         this.daoVenta = new DAOVentasImpl();
+
+        this.daoMesa = new DAOMesasImpl();
+        this.modelBox = (DefaultComboBoxModel) this.jComboBoxMesas.getModel();
+        this.setBoxContents();
+
+    }
+
+    private void setBoxContents() {
+        try {
+            daoMesa.listar().forEach(m -> modelBox.addElement(m.getIdMesa()));
+        } catch (Exception ex) {
+            //HACER ALGO
+        }
+    }
+
+    private void setFormatTable() {
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < this.jTable.getColumnCount(); i++) {
+            this.jTable.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+
     }
 
     private void setTableContents() {
         try {
-            daoPlatillos.listarTodos().forEach(p -> model.addRow(new Object[]{
+            daoPlatillos.listarTodos().forEach(p -> modelTabla.addRow(new Object[]{
                 p.getIdPlatillo(),
                 p.getNombre(),
                 p.getTipo(),
@@ -370,7 +411,7 @@ public class Ordenar extends javax.swing.JPanel {
     private void setTableContentsType(String tipo) {
         this.removeRowsModel();
         try {
-            daoPlatillos.listar(tipo).forEach(p -> model.addRow(new Object[]{
+            daoPlatillos.listar(tipo).forEach(p -> modelTabla.addRow(new Object[]{
                 p.getIdPlatillo(),
                 p.getNombre(),
                 p.getTipo(),
@@ -381,8 +422,8 @@ public class Ordenar extends javax.swing.JPanel {
     }
 
     private void removeRowsModel() {
-        while (!model.getDataVector().isEmpty()) {
-            model.removeRow(0);
+        while (!modelTabla.getDataVector().isEmpty()) {
+            modelTabla.removeRow(0);
         }
     }
 
@@ -394,6 +435,7 @@ public class Ordenar extends javax.swing.JPanel {
     private javax.swing.JButton btnEntradas;
     private javax.swing.JButton btnPlatosF;
     private javax.swing.JButton btnPostres;
+    private javax.swing.JComboBox<String> jComboBoxMesas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -407,6 +449,5 @@ public class Ordenar extends javax.swing.JPanel {
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtMesa;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,8 +1,10 @@
 package itt.Vista;
 
-import itt.Modelos.Venta;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -11,12 +13,17 @@ public class Principal extends javax.swing.JFrame {
     private Color bgColor;
     public static String usuario;
     public static int ventasActivas[] = new int[8];
-    
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    public static String fechaSistema = dateFormat.format(new Date());
+    public static String horaSistema = timeFormat.format(new Date());
+
     public Principal(String usuario) {
         initComponents();
         this.setValueComponents();
         Principal.usuario = usuario;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -284,12 +291,12 @@ public class Principal extends javax.swing.JFrame {
         Principal.jPanelBase.setBackground(bgColor);
     }
 
-    public static void setPanelBase(JPanel panel){
+    public static void setPanelBase(JPanel panel) {
         panel.setSize(jPanelBase.getSize());
         panel.setLocation(0, 0);
-        
+
         jPanelBase.removeAll();
-        jPanelBase.add(panel,BorderLayout.CENTER);
+        jPanelBase.add(panel, BorderLayout.CENTER);
         jPanelBase.revalidate();
         jPanelBase.repaint();
     }

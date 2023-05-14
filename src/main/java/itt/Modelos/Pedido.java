@@ -7,6 +7,8 @@ public class Pedido {
     private int cantidad;
     private String estado;
     private double subtotal;
+    private String fecha;
+    private String hora;
 
     public Platillo getIdPlatillo() {
         return idPlatillo;
@@ -55,6 +57,21 @@ public class Pedido {
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
-    
-    
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+  
 }

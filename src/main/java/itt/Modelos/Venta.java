@@ -8,8 +8,9 @@ public class Venta {
     private double total;
     private String fecha;
     private String hora;
-    private int idMesero;
+    private Mesero mesero;
     private List<FormaPago> formaPago;
+    private List<Pedido> pedidos;
 
     public int getIdVenta() {
         return idVenta;
@@ -44,12 +45,12 @@ public class Venta {
     }
     
 
-    public int getIdMesero() {
-        return idMesero;
+    public Mesero getMesero() {
+        return mesero;
     }
 
-    public void setIdMesero(int idMesero) {
-        this.idMesero = idMesero;
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
     }
 
     public List<FormaPago> getFormaPago() {
@@ -59,7 +60,14 @@ public class Venta {
     public void setFormaPago(List<FormaPago> formaPago) {
         this.formaPago = formaPago;
     }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
  
-    
     
 }

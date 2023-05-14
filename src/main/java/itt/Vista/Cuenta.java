@@ -1,10 +1,83 @@
-
 package itt.Vista;
+
+import itt.DAO.DAOMesasImpl;
+import itt.DAO.DAOPedidosImpl;
+import itt.DAO.DAOVentasImpl;
+import itt.Interfaces.DAOMesas;
+import itt.Interfaces.DAOPedidos;
+import itt.Interfaces.DAOVentas;
+import itt.Modelos.Venta;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class Cuenta extends javax.swing.JPanel {
 
-    public Cuenta() {
+    private DAOPedidos daoPedido;
+    private DAOVentas daoVenta;
+    private DAOMesas daoMesa;
+    private Venta venta;
+    private DefaultTableModel model;
+    private final int idVenta;
+    private final int idMesa;
+
+    public Cuenta(int id) {
         initComponents();
+        this.idVenta = Principal.ventasActivas[id - 1];
+        this.idMesa = id;
+        this.setValueComponents();
+    }
+
+    private void setValueComponents() {
+
+        try {
+            daoVenta = new DAOVentasImpl();
+            if (daoVenta.actualizar(idVenta) != 0) {
+
+                daoPedido = new DAOPedidosImpl();
+                this.model = (DefaultTableModel) this.jTable.getModel();
+                this.setTableContents();
+                this.setFormatTable();
+
+                venta = daoVenta.getDatosCuenta(idVenta);
+                this.lblMesero.setText("MESERO: " + venta.getMesero().getNombre() + " " + venta.getMesero().getApellido());
+                this.lblTotal.setText("TOTAL: $" + venta.getTotal());
+                this.lblFecha.setText("FECHA: " + venta.getFecha());
+                this.lblHora.setText("HORA: " + venta.getHora());
+                this.lblMesa.setText("MESA: " + idMesa);
+                
+                daoMesa = new DAOMesasImpl();
+                daoMesa.actualizarEstado(idMesa, 1);
+                
+                Principal.ventasActivas[idMesa - 1] = 0;
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL GENERAR CUENTA");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    private void setFormatTable() {
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < this.jTable.getColumnCount(); i++) {
+            this.jTable.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+
+    }
+
+    private void setTableContents() {
+        try {
+            daoPedido.listar(idVenta,"2").forEach(o -> model.addRow(new Object[]{
+                o.getIdPlatillo().getNombre(),
+                o.getIdPlatillo().getPrecio(),
+                o.getCantidad(),
+                o.getSubtotal()}));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -16,8 +89,8 @@ public class Cuenta extends javax.swing.JPanel {
         lblFecha = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
         lblMesa = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
         lblMesero = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
 
@@ -33,26 +106,29 @@ public class Cuenta extends javax.swing.JPanel {
         lblMesa.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         lblMesa.setText("MESA:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "NOMBRE", "PRECIO", "CANTIDAD", "SUBTOTAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane.setViewportView(jTable);
+        if (jTable.getColumnModel().getColumnCount() > 0) {
+            jTable.getColumnModel().getColumn(0).setResizable(false);
+            jTable.getColumnModel().getColumn(1).setResizable(false);
+            jTable.getColumnModel().getColumn(2).setResizable(false);
+            jTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         lblMesero.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         lblMesero.setText("MESERO:");
@@ -68,7 +144,7 @@ public class Cuenta extends javax.swing.JPanel {
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBgLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane))
                     .addGroup(jPanelBgLayout.createSequentialGroup()
                         .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelBgLayout.createSequentialGroup()
@@ -88,7 +164,7 @@ public class Cuenta extends javax.swing.JPanel {
                 .addComponent(lblMesero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTotal)
-                .addGap(212, 212, 212))
+                .addGap(120, 120, 120))
         );
         jPanelBgLayout.setVerticalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +179,7 @@ public class Cuenta extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(lblMesa)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMesero)
@@ -127,8 +203,8 @@ public class Cuenta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBg;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTable jTable;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblMesa;

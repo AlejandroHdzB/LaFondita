@@ -280,7 +280,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="logo2">
@@ -358,7 +358,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar2">
@@ -373,6 +373,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMesa3">
               <Properties>
@@ -384,7 +387,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar3">
@@ -399,6 +402,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMesa4">
               <Properties>
@@ -410,7 +416,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar4">
@@ -425,6 +431,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta4ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMesa5">
               <Properties>
@@ -436,7 +445,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar5">
@@ -451,11 +460,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta5ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCuenta6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta6ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar6">
               <Properties>
@@ -467,7 +482,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMesa6">
@@ -488,7 +503,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar7">
@@ -503,6 +518,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta7ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMesa8">
               <Properties>
@@ -514,7 +532,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rB8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DISPONIBLE"/>
+                <Property name="text" type="java.lang.String" value="OCUPADA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar8">
@@ -529,6 +547,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR CUENTA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCuenta8ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

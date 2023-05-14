@@ -91,7 +91,41 @@ public class DAOPlatillosImpl extends Conexion implements DAOPlatillos {
                     rs = st.executeQuery();
                     if (rs.next()) {
                         platillo = new Platillo();
-                        
+
+                        platillo.setIdPlatillo(rs.getString(1));
+                        platillo.setNombre(rs.getString(2));
+                        platillo.setTipo(rs.getString(3));
+                        platillo.setPrecio(rs.getDouble(4));
+                    }
+                }
+                rs.close();
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return platillo;
+    }
+
+    @Override
+    public Platillo buscarNombre(String nombre) throws Exception {
+        Platillo platillo = null;
+        String consulta = "SELECT * FROM platillos "
+                + "WHERE nombre = ?";
+        try {
+            this.conectar();
+            try {
+                ResultSet rs;
+                try (PreparedStatement st = conexion.prepareStatement(consulta)) {
+                    st.setString(1, nombre);
+                    rs = st.executeQuery();
+                    if (rs.next()) {
+                        platillo = new Platillo();
+
                         platillo.setIdPlatillo(rs.getString(1));
                         platillo.setNombre(rs.getString(2));
                         platillo.setTipo(rs.getString(3));
