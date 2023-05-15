@@ -22,6 +22,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setValueComponents();
         Principal.usuario = usuario;
+        Principal.setPanelBase(new PanelLogo());
     }
 
     @SuppressWarnings("unchecked")
@@ -289,6 +290,10 @@ public class Principal extends javax.swing.JFrame {
     private void setValueComponents() {
         this.bgColor = this.btnMesas.getBackground();
         Principal.jPanelBase.setBackground(bgColor);
+        
+        //RETIRAR DESPUES
+        this.btnReportes.setText("");
+        this.btnReportes.setEnabled(false);
     }
 
     public static void setPanelBase(JPanel panel) {

@@ -14,30 +14,30 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class DAOPedidosImpl extends Conexion implements DAOPedidos {
-
+    
     DAOPlatillos dao = new DAOPlatillosImpl();
-
+    
     @Override
     public List<Pedido> listar(String condicion) throws Exception {
         List<Pedido> lista = null;
         String consulta;
         if (condicion.equals("PENDIENTE")) {
-            consulta = "SELECT pl.idplatillo,pl.nombre,pe.idventa,pe.cantidad,pe.idmesa,pe.hora,pe.subtotal "
+            consulta = "SELECT pl.idplatillo,pl.nombre,pe.idventa,pe.cantidad,pe.idmesa,pe.hora,pe.subtotal,pe.estado "
                     + "FROM pedidos pe JOIN platillos pl "
                     + "ON pe.idplatillo = pl.idplatillo "
                     + "WHERE pe.estado = 'PENDIENTE'";
         } else if (condicion.equals("2")) {
-            consulta = "SELECT pl.idplatillo,pl.nombre,pe.idventa,pe.cantidad,pe.idmesa,pe.hora,pe.subtotal "
+            consulta = "SELECT pl.idplatillo,pl.nombre,pe.idventa,pe.cantidad,pe.idmesa,pe.hora,pe.subtotal,pe.estado "
                     + "FROM pedidos pe JOIN platillos pl "
                     + "ON pe.idplatillo = pl.idplatillo "
                     + "WHERE pe.estado IN ('PENDIENTE','ENTREGADO')";
         } else {
-            consulta = "SELECT pl.idplatillo,pl.nombre,pe.idventa,pe.cantidad,pe.idmesa,pe.hora,pe.subtotal "
+            consulta = "SELECT pl.idplatillo,pl.nombre,pe.idventa,pe.cantidad,pe.idmesa,pe.hora,pe.subtotal,pe.estado "
                     + "FROM pedidos pe JOIN platillos pl "
                     + "ON pe.idplatillo = pl.idplatillo "
                     + "WHERE pe.estado = 'ENTREGADO'";
         }
-
+        
         try {
             this.conectar();
             try (PreparedStatement st = conexion.prepareStatement(consulta); ResultSet rs = st.executeQuery()) {
@@ -45,17 +45,18 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
                 while (rs.next()) {
                     Pedido pedido = new Pedido();
                     Platillo platillo = new Platillo();
-
+                    
                     platillo.setIdPlatillo(rs.getString(1));
                     platillo.setNombre(rs.getString(2));
-
+                    
                     pedido.setIdVenta(rs.getInt(3));
                     pedido.setCantidad(rs.getInt(4));
                     pedido.setIdMesa(rs.getInt(5));
                     pedido.setHora(rs.getString(6));
                     pedido.setSubtotal(rs.getDouble(7));
+                    pedido.setEstado(rs.getString(8));
                     pedido.setIdPlatillo(platillo);
-
+                    
                     lista.add(pedido);
                 }
                 st.close();
@@ -68,7 +69,7 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
         }
         return lista;
     }
-
+    
     @Override
     public boolean agregar(int idVenta, String platillo, int cantidad, int mesa) throws Exception {
         String consulta = "INSERT INTO pedidos (idplatillo,idventa,idmesa,cantidad,subtotal,estado) "
@@ -88,7 +89,7 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
                     return false;
                 }
             }
-
+            
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         } finally {
@@ -96,32 +97,32 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
         }
         return true;
     }
-
+    
     @Override
     public List<Pedido> listar(int idVenta, String condicion) throws Exception {
         List<Pedido> lista = null;
-
+        
         String consulta;
         if (condicion.equals("PENDIENTE")) {
-            consulta = "SELECT pl.idplatillo,pl.nombre,pl.precio,pe.idventa,pe.cantidad,pe.idmesa,pe.subtotal "
+            consulta = "SELECT pl.idplatillo,pl.nombre,pl.precio,pe.idventa,pe.cantidad,pe.idmesa,pe.subtotal,pe.estado "
                     + "FROM pedidos pe JOIN platillos pl "
                     + "ON pe.idplatillo = pl.idplatillo "
                     + "WHERE pe.estado = 'PENDIENTE' "
                     + "AND pe.idventa = ?";
         } else if (condicion.equals("2")) {
-            consulta = "SELECT pl.idplatillo,pl.nombre,pl.precio,pe.idventa,pe.cantidad,pe.idmesa,pe.subtotal "
+            consulta = "SELECT pl.idplatillo,pl.nombre,pl.precio,pe.idventa,pe.cantidad,pe.idmesa,pe.subtotal,pe.estado "
                     + "FROM pedidos pe JOIN platillos pl "
                     + "ON pe.idplatillo = pl.idplatillo "
                     + "WHERE pe.estado IN ('PENDIENTE','ENTREGADO') "
                     + "AND pe.idventa = ?";
         } else {
-            consulta = "SELECT pl.idplatillo,pl.nombre,pl.precio,pe.idventa,pe.cantidad,pe.idmesa,pe.subtotal "
+            consulta = "SELECT pl.idplatillo,pl.nombre,pl.precio,pe.idventa,pe.cantidad,pe.idmesa,pe.subtotal,pe.estado "
                     + "FROM pedidos pe JOIN platillos pl "
                     + "ON pe.idplatillo = pl.idplatillo "
                     + "WHERE pe.estado = 'ENTREGADO' "
                     + "AND pe.idventa = ?";
         }
-
+        
         try {
             this.conectar();
             try (PreparedStatement st = conexion.prepareStatement(consulta)) {
@@ -131,17 +132,18 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
                 while (rs.next()) {
                     Pedido pedido = new Pedido();
                     Platillo platillo = new Platillo();
-
+                    
                     platillo.setIdPlatillo(rs.getString(1));
                     platillo.setNombre(rs.getString(2));
                     platillo.setPrecio(rs.getDouble(3));
-
+                    
                     pedido.setIdVenta(rs.getInt(4));
                     pedido.setCantidad(rs.getInt(5));
                     pedido.setIdMesa(rs.getInt(6));
                     pedido.setSubtotal(rs.getDouble(7));
+                    pedido.setEstado(rs.getString(8));
                     pedido.setIdPlatillo(platillo);
-
+                    
                     lista.add(pedido);
                 }
                 rs.close();
@@ -154,7 +156,7 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
         }
         return lista;
     }
-
+    
     @Override
     public int eliminar(int idVenta, String idProducto, String fecha, String hora) throws Exception {
         String consulta = "DELETE FROM pedidos "
@@ -175,7 +177,7 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
                 bnd = st.executeUpdate();
                 st.close();
             }
-
+            
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         } finally {
@@ -183,7 +185,7 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
         }
         return bnd;
     }
-
+    
     @Override
     public int actualizar(int idVenta, String idProducto, String fecha, String hora, String estado) throws Exception {
         String consulta = "UPDATE pedidos "
@@ -206,7 +208,7 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
                 bnd = st.executeUpdate();
                 st.close();
             }
-
+            
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         } finally {
@@ -214,5 +216,5 @@ public class DAOPedidosImpl extends Conexion implements DAOPedidos {
         }
         return bnd;
     }
-
+    
 }

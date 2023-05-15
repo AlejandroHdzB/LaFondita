@@ -5,6 +5,7 @@ import itt.Interfaces.DAOMesas;
 import itt.Modelos.Mesa;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 public class Mesas extends javax.swing.JPanel {
@@ -13,6 +14,7 @@ public class Mesas extends javax.swing.JPanel {
     private DAOMesas daoMesa;
     private JRadioButton disponibilidad[];
     private JButton btnCuentas[];
+    private JButton btnMesas[];
 
     public Mesas() {
         initComponents();
@@ -32,8 +34,10 @@ public class Mesas extends javax.swing.JPanel {
             }
             if(Principal.ventasActivas[idMesa - 1] == 0){
                 this.btnCuentas[idMesa - 1].setEnabled(false);
+                this.btnMesas[idMesa - 1].setEnabled(false);
             }else{
                 this.btnCuentas[idMesa - 1].setEnabled(true);
+                this.btnMesas[idMesa - 1].setEnabled(true);
             }
             this.disponibilidad[idMesa - 1].setEnabled(false);
         }
@@ -60,6 +64,15 @@ public class Mesas extends javax.swing.JPanel {
         this.btnCuentas[6] = this.btnCuenta7;
         this.btnCuentas[7] = this.btnCuenta8;
 
+       btnMesas = new JButton[8];
+       this.btnMesas[0] = this.btnMesa1;
+       this.btnMesas[1] = this.btnMesa2;
+       this.btnMesas[2] = this.btnMesa3;
+       this.btnMesas[3] = this.btnMesa4;
+       this.btnMesas[4] = this.btnMesa5;
+       this.btnMesas[5] = this.btnMesa6;
+       this.btnMesas[6] = this.btnMesa7;
+       this.btnMesas[7] = this.btnMesa8;
     }
 
     @SuppressWarnings("unchecked")
@@ -69,18 +82,10 @@ public class Mesas extends javax.swing.JPanel {
         jScrollPane = new javax.swing.JScrollPane();
         jPanelBg = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
-        logo1 = new javax.swing.JLabel();
         lblMesa1 = new javax.swing.JLabel();
         rB1 = new javax.swing.JRadioButton();
-        logo2 = new javax.swing.JLabel();
-        logo3 = new javax.swing.JLabel();
-        logo4 = new javax.swing.JLabel();
         btnAgregar1 = new javax.swing.JButton();
         btnCuenta1 = new javax.swing.JButton();
-        logo5 = new javax.swing.JLabel();
-        logo6 = new javax.swing.JLabel();
-        logo7 = new javax.swing.JLabel();
-        logo8 = new javax.swing.JLabel();
         lblMesa2 = new javax.swing.JLabel();
         rB2 = new javax.swing.JRadioButton();
         btnAgregar2 = new javax.swing.JButton();
@@ -109,6 +114,14 @@ public class Mesas extends javax.swing.JPanel {
         rB8 = new javax.swing.JRadioButton();
         btnAgregar8 = new javax.swing.JButton();
         btnCuenta8 = new javax.swing.JButton();
+        btnMesa1 = new javax.swing.JButton();
+        btnMesa2 = new javax.swing.JButton();
+        btnMesa3 = new javax.swing.JButton();
+        btnMesa4 = new javax.swing.JButton();
+        btnMesa5 = new javax.swing.JButton();
+        btnMesa6 = new javax.swing.JButton();
+        btnMesa7 = new javax.swing.JButton();
+        btnMesa8 = new javax.swing.JButton();
 
         jScrollPane.setBorder(null);
         jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -118,18 +131,10 @@ public class Mesas extends javax.swing.JPanel {
         jLabelTitulo.setFont(new java.awt.Font("NTR", 3, 40)); // NOI18N
         jLabelTitulo.setText("MESAS");
 
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
-
         lblMesa1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa1.setText("MESA 1");
 
         rB1.setText("OCUPADA");
-
-        logo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
-
-        logo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
-
-        logo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
 
         btnAgregar1.setText("AGREGAR PEDIDO");
         btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,14 +149,6 @@ public class Mesas extends javax.swing.JPanel {
                 btnCuenta1ActionPerformed(evt);
             }
         });
-
-        logo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
-
-        logo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
-
-        logo7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
-
-        logo8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
 
         lblMesa2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         lblMesa2.setText("MESA 2");
@@ -286,93 +283,185 @@ public class Mesas extends javax.swing.JPanel {
             }
         });
 
+        btnMesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa1ActionPerformed(evt);
+            }
+        });
+
+        btnMesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa2.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa2ActionPerformed(evt);
+            }
+        });
+
+        btnMesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa3.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa3ActionPerformed(evt);
+            }
+        });
+
+        btnMesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa4.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa4ActionPerformed(evt);
+            }
+        });
+
+        btnMesa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa5.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa5ActionPerformed(evt);
+            }
+        });
+
+        btnMesa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa6.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa6ActionPerformed(evt);
+            }
+        });
+
+        btnMesa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa7.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa7ActionPerformed(evt);
+            }
+        });
+
+        btnMesa8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mesa.png"))); // NOI18N
+        btnMesa8.setPreferredSize(new java.awt.Dimension(150, 150));
+        btnMesa8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesa8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBgLayout = new javax.swing.GroupLayout(jPanelBg);
         jPanelBg.setLayout(jPanelBgLayout);
         jPanelBgLayout.setHorizontalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBgLayout.createSequentialGroup()
-                .addGap(308, 308, 308)
-                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
-            .addGroup(jPanelBgLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(logo1)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa1)
-                            .addComponent(rB1)
-                            .addComponent(btnAgregar1)
-                            .addComponent(btnCuenta1)))
+                        .addGap(308, 308, 308)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(logo2)
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(btnMesa5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMesa5)
+                                    .addComponent(rB5)
+                                    .addComponent(btnAgregar5)
+                                    .addComponent(btnCuenta5)))
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnMesa1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnMesa3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblMesa3)
+                                            .addComponent(rB3)
+                                            .addComponent(btnAgregar3)
+                                            .addComponent(btnCuenta3)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblMesa1)
+                                            .addComponent(rB1)
+                                            .addComponent(btnAgregar1)
+                                            .addComponent(btnCuenta1)))))
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(btnMesa7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMesa7)
+                                    .addComponent(rB7)
+                                    .addComponent(btnAgregar7)
+                                    .addComponent(btnCuenta7))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa3)
-                            .addComponent(rB3)
-                            .addComponent(btnAgregar3)
-                            .addComponent(btnCuenta3)))
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(logo3)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa5)
-                            .addComponent(rB5)
-                            .addComponent(btnAgregar5)
-                            .addComponent(btnCuenta5)))
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(logo4)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa7)
-                            .addComponent(rB7)
-                            .addComponent(btnAgregar7)
-                            .addComponent(btnCuenta7))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(logo8)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa8)
-                            .addComponent(rB8)
-                            .addComponent(btnAgregar8)
-                            .addComponent(btnCuenta8)))
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(logo7)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa6)
-                            .addComponent(rB6)
-                            .addComponent(btnAgregar6)
-                            .addComponent(btnCuenta6)))
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo6)
-                            .addComponent(logo5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMesa4)
-                            .addComponent(rB4)
-                            .addComponent(btnAgregar4)
-                            .addComponent(btnCuenta4)
-                            .addComponent(lblMesa2)
-                            .addComponent(rB2)
-                            .addComponent(btnAgregar2)
-                            .addComponent(btnCuenta2))))
-                .addGap(28, 28, 28))
+                            .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
+                                    .addComponent(btnMesa8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblMesa8)
+                                        .addComponent(rB8)
+                                        .addComponent(btnAgregar8)
+                                        .addComponent(btnCuenta8)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
+                                    .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnMesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnMesa4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblMesa4)
+                                        .addComponent(rB4)
+                                        .addComponent(btnAgregar4)
+                                        .addComponent(btnCuenta4)
+                                        .addComponent(lblMesa2)
+                                        .addComponent(rB2)
+                                        .addComponent(btnAgregar2)
+                                        .addComponent(btnCuenta2))))
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(btnMesa6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMesa6)
+                                    .addComponent(rB6)
+                                    .addComponent(btnAgregar6)
+                                    .addComponent(btnCuenta6))))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanelBgLayout.setVerticalGroup(
             jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnMesa7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo5)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnMesa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                                        .addComponent(lblMesa2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rB2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAgregar2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCuenta2)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnMesa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelBgLayout.createSequentialGroup()
+                                        .addComponent(lblMesa4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rB4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAgregar4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCuenta4))))
                             .addGroup(jPanelBgLayout.createSequentialGroup()
                                 .addComponent(lblMesa1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -380,79 +469,60 @@ public class Mesas extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAgregar1)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCuenta1))
-                            .addComponent(logo1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo2)
-                            .addComponent(logo6)
-                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(btnCuenta1)
+                                .addGap(38, 38, 38)
                                 .addComponent(lblMesa3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rB3)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAgregar3)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCuenta3))))
-                    .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
-                            .addComponent(lblMesa2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rB2)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnAgregar2)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnCuenta2)
-                            .addGap(168, 168, 168))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBgLayout.createSequentialGroup()
-                            .addComponent(lblMesa4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rB4)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnAgregar4)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnCuenta4))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logo3)
-                    .addComponent(logo7)
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(lblMesa5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rB5)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar5)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCuenta5))
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(lblMesa6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rB6)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar6)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCuenta6)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logo4)
-                    .addComponent(logo8)
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(lblMesa7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rB7)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar7)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCuenta7))
-                    .addGroup(jPanelBgLayout.createSequentialGroup()
-                        .addComponent(lblMesa8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rB8)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar8)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCuenta8)))
-                .addGap(23, 23, 23))
+                                .addComponent(btnCuenta3))
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(btnMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMesa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(lblMesa5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rB5)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAgregar5)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCuenta5))
+                            .addComponent(btnMesa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(lblMesa6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rB6)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAgregar6)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCuenta6))
+                            .addComponent(btnMesa6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBgLayout.createSequentialGroup()
+                                .addComponent(lblMesa8)
+                                .addGap(14, 14, 14)
+                                .addComponent(rB8)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAgregar8)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCuenta8))
+                            .addGroup(jPanelBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelBgLayout.createSequentialGroup()
+                                    .addComponent(lblMesa7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(rB7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnAgregar7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCuenta7))
+                                .addComponent(btnMesa8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(37, 37, 37))
         );
 
         jScrollPane.setViewportView(jPanelBg);
@@ -467,7 +537,7 @@ public class Mesas extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGap(0, 780, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane))
         );
@@ -538,6 +608,38 @@ public class Mesas extends javax.swing.JPanel {
         Principal.setPanelBase(new Cuenta(8));
     }//GEN-LAST:event_btnCuenta8ActionPerformed
 
+    private void btnMesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa1ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(1));
+    }//GEN-LAST:event_btnMesa1ActionPerformed
+
+    private void btnMesa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa2ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(2));
+    }//GEN-LAST:event_btnMesa2ActionPerformed
+
+    private void btnMesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa3ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(3));
+    }//GEN-LAST:event_btnMesa3ActionPerformed
+
+    private void btnMesa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa4ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(4));
+    }//GEN-LAST:event_btnMesa4ActionPerformed
+
+    private void btnMesa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa5ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(5));
+    }//GEN-LAST:event_btnMesa5ActionPerformed
+
+    private void btnMesa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa6ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(6));
+    }//GEN-LAST:event_btnMesa6ActionPerformed
+
+    private void btnMesa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa7ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(7));
+    }//GEN-LAST:event_btnMesa7ActionPerformed
+
+    private void btnMesa8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa8ActionPerformed
+        Principal.setPanelBase(new PedidosMesa(8));
+    }//GEN-LAST:event_btnMesa8ActionPerformed
+
     private void setValueComponents() {
         this.jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
@@ -546,7 +648,7 @@ public class Mesas extends javax.swing.JPanel {
         try {
             this.mesas = daoMesa.listar();
         } catch (Exception ex) {
-            //HACER ALGO
+            JOptionPane.showMessageDialog(null,ex.getMessage());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -566,6 +668,14 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JButton btnCuenta6;
     private javax.swing.JButton btnCuenta7;
     private javax.swing.JButton btnCuenta8;
+    private javax.swing.JButton btnMesa1;
+    private javax.swing.JButton btnMesa2;
+    private javax.swing.JButton btnMesa3;
+    private javax.swing.JButton btnMesa4;
+    private javax.swing.JButton btnMesa5;
+    private javax.swing.JButton btnMesa6;
+    private javax.swing.JButton btnMesa7;
+    private javax.swing.JButton btnMesa8;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBg;
     private javax.swing.JScrollPane jScrollPane;
@@ -577,14 +687,6 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JLabel lblMesa6;
     private javax.swing.JLabel lblMesa7;
     private javax.swing.JLabel lblMesa8;
-    private javax.swing.JLabel logo1;
-    private javax.swing.JLabel logo2;
-    private javax.swing.JLabel logo3;
-    private javax.swing.JLabel logo4;
-    private javax.swing.JLabel logo5;
-    private javax.swing.JLabel logo6;
-    private javax.swing.JLabel logo7;
-    private javax.swing.JLabel logo8;
     private javax.swing.JRadioButton rB1;
     private javax.swing.JRadioButton rB2;
     private javax.swing.JRadioButton rB3;

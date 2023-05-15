@@ -145,4 +145,76 @@ public class DAOPlatillosImpl extends Conexion implements DAOPlatillos {
         return platillo;
     }
 
+    @Override
+    public List<Platillo> buscarPrecio(double precio) throws Exception {
+        List<Platillo> lista = null;
+        String consulta = "SELECT * FROM platillos "
+                + "WHERE precio = ?";
+        try {
+            this.conectar();
+            try {
+                PreparedStatement st = conexion.prepareStatement(consulta);
+                st.setDouble(1, precio);
+                ResultSet rs = st.executeQuery();
+                lista = new ArrayList();
+                while (rs.next()) {
+                    Platillo platillo = new Platillo();
+
+                    platillo.setIdPlatillo(rs.getString(1));
+                    platillo.setNombre(rs.getString(2));
+                    platillo.setTipo(rs.getString(3));
+                    platillo.setPrecio(rs.getDouble(4));
+
+                    lista.add(platillo);
+                }
+                st.close();
+                rs.close();
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Platillo> buscarLikeNombre(String nombre) throws Exception {
+        List<Platillo> lista = null;
+        String consulta = "SELECT * FROM platillos "
+                + "WHERE nombre LIKE CONCAT('%',?,'%')";
+        try {
+            this.conectar();
+            try {
+                ResultSet rs;
+                try (PreparedStatement st = conexion.prepareStatement(consulta)) {
+                    st.setString(1, nombre);
+                    rs = st.executeQuery();
+                    lista = new ArrayList();
+                    while (rs.next()) {
+                        Platillo platillo = new Platillo();
+
+                        platillo.setIdPlatillo(rs.getString(1));
+                        platillo.setNombre(rs.getString(2));
+                        platillo.setTipo(rs.getString(3));
+                        platillo.setPrecio(rs.getDouble(4));
+                        
+                        lista.add(platillo);
+                    }
+                }
+                rs.close();
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return lista;
+    }
 }

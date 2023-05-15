@@ -211,6 +211,9 @@ public class InicioSesion extends javax.swing.JFrame {
         this.txtPassword.putClientProperty("JTextField.placeholderText", "Ingrese su contraseña");
         //Boton Ingresar
         this.btnIngresar.putClientProperty("JButton.buttonType", "roundRect");
+        
+        this.lblUsuarioIncorrecto.setText("");
+        this.lblPasswordIncorrecto.setText("");
 
         this.dao = new DAOMeserosImpl();
     }

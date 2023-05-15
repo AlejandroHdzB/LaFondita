@@ -10,7 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import itt.Interfaces.DAOPlatillos;
 import itt.Interfaces.DAOVentas;
+import itt.Modelos.Platillo;
 import static itt.Vista.Principal.ventasActivas;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -25,6 +28,7 @@ public class Ordenar extends javax.swing.JPanel {
     private DefaultComboBoxModel modelBox;
     private int idVenta;
     private int idMesa;
+    private List<Platillo> p;
 
     public Ordenar() {
         initComponents();
@@ -171,6 +175,12 @@ public class Ordenar extends javax.swing.JPanel {
             .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
+
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lupa.png"))); // NOI18N
         btnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +306,7 @@ public class Ordenar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPlatosFActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        this.codigoBuscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -360,6 +370,10 @@ public class Ordenar extends javax.swing.JPanel {
         this.setTableContentsType("postre");
     }//GEN-LAST:event_btnPostresActionPerformed
 
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        this.codigoBuscar();
+    }//GEN-LAST:event_txtBuscarKeyTyped
+
     private void setValueComponents() {
         this.txtBuscar.putClientProperty("JTextField.placeholderText", "Por ID, nombre o precio");
         this.btnAgregar.putClientProperty("JButton.buttonType", "roundRect");
@@ -367,6 +381,11 @@ public class Ordenar extends javax.swing.JPanel {
         //Colocar objeto
         this.daoPlatillos = new DAOPlatillosImpl();
         this.modelTabla = (DefaultTableModel) this.jTable.getModel();
+        try {
+            p = daoPlatillos.listarTodos();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         this.setTableContents();
         this.setFormatTable();
 
@@ -383,7 +402,7 @@ public class Ordenar extends javax.swing.JPanel {
         try {
             daoMesa.listar().forEach(m -> modelBox.addElement(m.getIdMesa()));
         } catch (Exception ex) {
-            //HACER ALGO
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
@@ -398,7 +417,7 @@ public class Ordenar extends javax.swing.JPanel {
 
     private void setTableContents() {
         try {
-            daoPlatillos.listarTodos().forEach(p -> modelTabla.addRow(new Object[]{
+            p.forEach(p -> modelTabla.addRow(new Object[]{
                 p.getIdPlatillo(),
                 p.getNombre(),
                 p.getTipo(),
@@ -424,6 +443,32 @@ public class Ordenar extends javax.swing.JPanel {
     private void removeRowsModel() {
         while (!modelTabla.getDataVector().isEmpty()) {
             modelTabla.removeRow(0);
+        }
+    }
+
+    private void codigoBuscar() {
+        String item = this.txtBuscar.getText();
+        try {
+            if (Validations.isNumeric(item)) {
+                this.removeRowsModel();
+                p = daoPlatillos.buscarPrecio(Double.parseDouble(item));
+                this.setTableContents();
+            } else {
+                Platillo pla = daoPlatillos.buscarID(item);
+                List<Platillo> lista = new ArrayList();
+                if (pla != null) {
+                    this.removeRowsModel();
+                    lista.add(pla);
+                    p = lista;
+                    this.setTableContents();
+                } else {
+                    this.removeRowsModel();
+                    p = daoPlatillos.buscarLikeNombre(item);
+                    this.setTableContents();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
