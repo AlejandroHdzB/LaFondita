@@ -1,23 +1,27 @@
 package itt.Vista;
 
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
-import itt.DAO.DAOMeserosImpl;
+import itt.DAO.DAOUsuariosImpl;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import itt.Interfaces.DAOMeseros;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import itt.Interfaces.DAOUsuarios;
+import itt.Modelos.Usuario;
 
 public class InicioSesion extends javax.swing.JFrame {
 
     private Color bgColor;
-    private DAOMeseros dao;
+    private DAOUsuarios dao;
+    public static VG vg;
 
     public InicioSesion() {
+        FlatMoonlightIJTheme.setup();
         initComponents();
         this.setValueComponents();
     }
@@ -211,11 +215,11 @@ public class InicioSesion extends javax.swing.JFrame {
         this.txtPassword.putClientProperty("JTextField.placeholderText", "Ingrese su contraseña");
         //Boton Ingresar
         this.btnIngresar.putClientProperty("JButton.buttonType", "roundRect");
-        
+
         this.lblUsuarioIncorrecto.setText("");
         this.lblPasswordIncorrecto.setText("");
 
-        this.dao = new DAOMeserosImpl();
+        this.dao = new DAOUsuariosImpl();
     }
 
     private void codigoIngresar() {
@@ -238,9 +242,18 @@ public class InicioSesion extends javax.swing.JFrame {
                             this.lblPasswordIncorrecto.setText("Contraseña incorrecta");
                             break;
                         default:
-                            this.dispose();
-                            new Principal(usuario).setVisible(true);
-                            break;
+                            Usuario u = dao.buscar(usuario);
+                            if (u.getRoll().equals("Administrador")) {
+                                this.dispose();
+                                vg = new VG(usuario);
+                                new PrincipalA(usuario).setVisible(true);                          
+                            }else{
+                                this.dispose();
+                                vg = new VG(usuario);
+                                new PrincipalM(usuario).setVisible(true);                     
+                            }
+                        break;
+
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());

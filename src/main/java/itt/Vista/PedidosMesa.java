@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import static itt.Vista.InicioSesion.*;
 
 public class PedidosMesa extends javax.swing.JPanel {
 
@@ -16,7 +17,7 @@ public class PedidosMesa extends javax.swing.JPanel {
 
     public PedidosMesa(int idMesa) {
         initComponents();
-        this.idVenta = Principal.ventasActivas[idMesa - 1];
+        this.idVenta = vg.ventasActivas[idMesa - 1];
         this.idMesa = idMesa;
         this.setValueComponents();
     }

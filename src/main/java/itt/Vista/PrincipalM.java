@@ -1,28 +1,20 @@
 package itt.Vista;
 
-import java.awt.BorderLayout;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 import java.awt.Color;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import static itt.Vista.InicioSesion.*;
 
-public class Principal extends javax.swing.JFrame {
+public class PrincipalM extends javax.swing.JFrame {
 
     private Color bgColor;
-    public static String usuario;
-    public static int ventasActivas[] = new int[8];
-    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private static final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-    public static String fechaSistema = dateFormat.format(new Date());
-    public static String horaSistema = timeFormat.format(new Date());
 
-    public Principal(String usuario) {
+    public PrincipalM(String usuario) {
+        FlatMoonlightIJTheme.setup();
         initComponents();
         this.setValueComponents();
-        Principal.usuario = usuario;
-        Principal.setPanelBase(new PanelLogo());
+        vg.setPanelBase(new PanelLogo(), this.jPanelBase);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +29,6 @@ public class Principal extends javax.swing.JFrame {
         btnVerPedidos = new javax.swing.JButton();
         btnAgregarPedido = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        btnReportes = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         jPanelBarraTitulo = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
@@ -108,10 +99,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnReportes.setText("REPORTES");
-        btnReportes.setBorder(null);
-        btnReportes.setBorderPainted(false);
-
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo16x16.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelOpcionesLayout = new javax.swing.GroupLayout(jPanelOpciones);
@@ -124,7 +111,6 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(btnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnAgregarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnVerPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanelOpcionesLayout.setVerticalGroup(
@@ -138,9 +124,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnAgregarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnVerPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(170, 170, 170)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -271,11 +255,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMaximizarActionPerformed
 
     private void btnVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPedidosActionPerformed
-        Principal.setPanelBase(new Pedidos());
+        vg.setPanelBase(new Pedidos(), this.jPanelBase);
     }//GEN-LAST:event_btnVerPedidosActionPerformed
 
     private void btnAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPedidoActionPerformed
-        Principal.setPanelBase(new Ordenar());
+        vg.setPanelBase(new Ordenar(), this.jPanelBase);
     }//GEN-LAST:event_btnAgregarPedidoActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -284,40 +268,24 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesasActionPerformed
-        Principal.setPanelBase(new Mesas());
+        vg.setPanelBase(new Mesas(this.jPanelBase),this.jPanelBase);
     }//GEN-LAST:event_btnMesasActionPerformed
 
     private void setValueComponents() {
         this.bgColor = this.btnMesas.getBackground();
-        Principal.jPanelBase.setBackground(bgColor);
-        
-        //RETIRAR DESPUES
-        this.btnReportes.setText("");
-        this.btnReportes.setEnabled(false);
+        this.jPanelBase.setBackground(bgColor);
     }
-
-    public static void setPanelBase(JPanel panel) {
-        panel.setSize(jPanelBase.getSize());
-        panel.setLocation(0, 0);
-
-        jPanelBase.removeAll();
-        jPanelBase.add(panel, BorderLayout.CENTER);
-        jPanelBase.revalidate();
-        jPanelBase.repaint();
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPedido;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnMaximizar;
     private javax.swing.JButton btnMesas;
     private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerPedidos;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBarraTitulo;
-    private static javax.swing.JPanel jPanelBase;
+    private javax.swing.JPanel jPanelBase;
     private javax.swing.JPanel jPanelBg;
     private javax.swing.JPanel jPanelOpciones;
     private javax.swing.JPanel jPanelPrincipal;

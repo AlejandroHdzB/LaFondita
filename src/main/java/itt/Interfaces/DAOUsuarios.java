@@ -1,12 +1,12 @@
 
 package itt.Interfaces;
 
-import itt.Modelos.Mesero;
+import itt.Modelos.Usuario;
 
-public interface DAOMeseros {
+public interface DAOUsuarios {
     
     public int buscar(String usuario, String contraseña) throws Exception;
-    public Mesero buscar(String id) throws Exception;
+    public Usuario buscar(String id) throws Exception;
 }
         
     

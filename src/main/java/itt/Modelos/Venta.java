@@ -8,7 +8,7 @@ public class Venta {
     private double total;
     private String fecha;
     private String hora;
-    private Mesero mesero;
+    private Usuario mesero;
     private List<FormaPago> formaPago;
     private List<Pedido> pedidos;
 
@@ -45,11 +45,11 @@ public class Venta {
     }
     
 
-    public Mesero getMesero() {
+    public Usuario getMesero() {
         return mesero;
     }
 
-    public void setMesero(Mesero mesero) {
+    public void setMesero(Usuario mesero) {
         this.mesero = mesero;
     }
 

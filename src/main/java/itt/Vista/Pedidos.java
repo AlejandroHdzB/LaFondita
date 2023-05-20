@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import itt.Interfaces.DAOPedidos;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import static itt.Vista.InicioSesion.*;
 
 public class Pedidos extends javax.swing.JPanel {
 
@@ -191,7 +192,7 @@ public class Pedidos extends javax.swing.JPanel {
                 String platillo = String.valueOf(this.jTable.getValueAt(row, 3));
                 String hora = String.valueOf(this.jTable.getValueAt(row, 2));
 
-                int e = dao.actualizar(id, platillo, Principal.fechaSistema, hora, estado);
+                int e = dao.actualizar(id, platillo, vg.fechaSistema, hora, estado);
                 if (e != 0) {
                     JOptionPane.showMessageDialog(null, "Cambio exitoso");
                     this.removeRowsModel();

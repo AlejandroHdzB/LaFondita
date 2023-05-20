@@ -2,10 +2,9 @@ package itt.DAO;
 
 import itt.AccesoDatos.Conexion;
 import itt.Interfaces.DAOVentas;
-import itt.Modelos.Mesero;
+import itt.Modelos.Usuario;
 import itt.Modelos.Pedido;
 import itt.Modelos.Venta;
-import itt.Vista.Principal;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.List;
+import static itt.Vista.InicioSesion.*;
 
 public class DAOVentasImpl extends Conexion implements DAOVentas {
 
@@ -28,7 +28,7 @@ public class DAOVentasImpl extends Conexion implements DAOVentas {
         try {
             this.conectar();
             PreparedStatement st = conexion.prepareStatement(consultaIns, Statement.RETURN_GENERATED_KEYS);
-            st.setString(1, Principal.usuario);
+            st.setString(1, vg.usuario);
 
             filas = st.executeUpdate();
 
@@ -62,8 +62,8 @@ public class DAOVentasImpl extends Conexion implements DAOVentas {
         try {
             this.conectar();
             PreparedStatement st = conexion.prepareStatement(consultaIns);
-            st.setDate(1, Date.valueOf(Principal.fechaSistema));
-            st.setTime(2, Time.valueOf(Principal.horaSistema));
+            st.setDate(1, Date.valueOf(vg.fechaSistema));
+            st.setTime(2, Time.valueOf(vg.horaSistema));
             st.setDouble(3, total);
             st.setInt(4, idVenta);
 
@@ -104,7 +104,7 @@ public class DAOVentasImpl extends Conexion implements DAOVentas {
                 ResultSet rs = st.executeQuery();
                 if (rs.next()) {
                     venta = new Venta();
-                    Mesero m = new Mesero();
+                    Usuario m = new Usuario();
 
                     m.setNombre(rs.getString(1));
                     m.setApellido(rs.getString(2));

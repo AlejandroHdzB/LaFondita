@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import itt.Interfaces.DAOPlatillos;
 import itt.Interfaces.DAOVentas;
 import itt.Modelos.Platillo;
-import static itt.Vista.Principal.ventasActivas;
+import static itt.Vista.InicioSesion.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -322,14 +322,16 @@ public class Ordenar extends javax.swing.JPanel {
 
                                 int c = Integer.parseInt(cant);
 
-                                if (ventasActivas[idMesa - 1] == 0) {
-                                    ventasActivas[idMesa - 1] = daoVenta.agregar();
+                                if (vg.ventasActivas[idMesa - 1] == 0) {
+                                    vg.ventasActivas[idMesa - 1] = daoVenta.agregar();
                                 }
-                                idVenta = ventasActivas[idMesa - 1];
+                                idVenta = vg.ventasActivas[idMesa - 1];
 
                                 if (daoPedidos.agregar(idVenta, idPla, c, idMesa)) {
                                     JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
                                     daoMesa.actualizarEstado(idMesa, 0);
+                                    this.txtID.setText("");
+                                    this.txtCantidad.setText("");
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Error al agregar pedido");
                                 }

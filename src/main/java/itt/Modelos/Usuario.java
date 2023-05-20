@@ -1,18 +1,19 @@
 
 package itt.Modelos;
 
-public class Mesero {
+public class Usuario {
     
-    private int idMesero;
+    private String idUsuario;
     private String nombre;
     private String apellido;
+    private String roll;
     
-    public int getIdMesero() {
-        return idMesero;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdMesero(int idMesero) {
-        this.idMesero = idMesero;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -29,6 +30,14 @@ public class Mesero {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getRoll() {
+        return roll;
+    }
+
+    public void setRoll(String roll) {
+        this.roll = roll;
     }
    
 }

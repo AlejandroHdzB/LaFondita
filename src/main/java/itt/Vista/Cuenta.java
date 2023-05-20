@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import static itt.Vista.InicioSesion.*;
 
 public class Cuenta extends javax.swing.JPanel {
 
@@ -24,7 +25,7 @@ public class Cuenta extends javax.swing.JPanel {
 
     public Cuenta(int id) {
         initComponents();
-        this.idVenta = Principal.ventasActivas[id - 1];
+        this.idVenta = vg.ventasActivas[id - 1];
         this.idMesa = id;
         this.setValueComponents();
     }
@@ -50,7 +51,7 @@ public class Cuenta extends javax.swing.JPanel {
                 daoMesa = new DAOMesasImpl();
                 daoMesa.actualizarEstado(idMesa, 1);
                 
-                Principal.ventasActivas[idMesa - 1] = 0;
+                vg.ventasActivas[idMesa - 1] = 0;
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL GENERAR CUENTA");
             }

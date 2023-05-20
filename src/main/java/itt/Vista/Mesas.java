@@ -1,5 +1,6 @@
 package itt.Vista;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import itt.DAO.DAOMesasImpl;
 import itt.Interfaces.DAOMesas;
 import itt.Modelos.Mesa;
@@ -7,6 +8,8 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import static itt.Vista.InicioSesion.*;
+import javax.swing.JPanel;
 
 public class Mesas extends javax.swing.JPanel {
 
@@ -15,27 +18,28 @@ public class Mesas extends javax.swing.JPanel {
     private JRadioButton disponibilidad[];
     private JButton btnCuentas[];
     private JButton btnMesas[];
+    private JPanel panel;
 
-    public Mesas() {
+    public Mesas(JPanel panel) {
         initComponents();
         this.setValueComponents();
         this.generarArreglos();
         this.setValuesArrays();
-        
+        this.panel = panel;
     }
-    
-    private void setValuesArrays(){
-        for(Mesa m : mesas){
+
+    private void setValuesArrays() {
+        for (Mesa m : mesas) {
             int idMesa = m.getIdMesa();
-            if(m.getEstado() == 0){
+            if (m.getEstado() == 0) {
                 this.disponibilidad[idMesa - 1].setSelected(true);
-            }else{
+            } else {
                 this.disponibilidad[idMesa - 1].setSelected(false);
             }
-            if(Principal.ventasActivas[idMesa - 1] == 0){
+            if (vg.ventasActivas[idMesa - 1] == 0) {
                 this.btnCuentas[idMesa - 1].setEnabled(false);
                 this.btnMesas[idMesa - 1].setEnabled(false);
-            }else{
+            } else {
                 this.btnCuentas[idMesa - 1].setEnabled(true);
                 this.btnMesas[idMesa - 1].setEnabled(true);
             }
@@ -53,7 +57,7 @@ public class Mesas extends javax.swing.JPanel {
         this.disponibilidad[5] = this.rB6;
         this.disponibilidad[6] = this.rB7;
         this.disponibilidad[7] = this.rB8;
- 
+
         btnCuentas = new JButton[8];
         this.btnCuentas[0] = this.btnCuenta1;
         this.btnCuentas[1] = this.btnCuenta2;
@@ -64,15 +68,15 @@ public class Mesas extends javax.swing.JPanel {
         this.btnCuentas[6] = this.btnCuenta7;
         this.btnCuentas[7] = this.btnCuenta8;
 
-       btnMesas = new JButton[8];
-       this.btnMesas[0] = this.btnMesa1;
-       this.btnMesas[1] = this.btnMesa2;
-       this.btnMesas[2] = this.btnMesa3;
-       this.btnMesas[3] = this.btnMesa4;
-       this.btnMesas[4] = this.btnMesa5;
-       this.btnMesas[5] = this.btnMesa6;
-       this.btnMesas[6] = this.btnMesa7;
-       this.btnMesas[7] = this.btnMesa8;
+        btnMesas = new JButton[8];
+        this.btnMesas[0] = this.btnMesa1;
+        this.btnMesas[1] = this.btnMesa2;
+        this.btnMesas[2] = this.btnMesa3;
+        this.btnMesas[3] = this.btnMesa4;
+        this.btnMesas[4] = this.btnMesa5;
+        this.btnMesas[5] = this.btnMesa6;
+        this.btnMesas[6] = this.btnMesa7;
+        this.btnMesas[7] = this.btnMesa8;
     }
 
     @SuppressWarnings("unchecked")
@@ -545,99 +549,99 @@ public class Mesas extends javax.swing.JPanel {
 
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        Principal.setPanelBase(new Ordenar(1));
+        vg.setPanelBase(new Ordenar(1), panel);
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        Principal.setPanelBase(new Ordenar(2));
+        vg.setPanelBase(new Ordenar(2), panel);
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        Principal.setPanelBase(new Ordenar(3));
+        vg.setPanelBase(new Ordenar(3), panel);
     }//GEN-LAST:event_btnAgregar3ActionPerformed
 
     private void btnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar4ActionPerformed
-        Principal.setPanelBase(new Ordenar(4));
+        vg.setPanelBase(new Ordenar(4), panel);
     }//GEN-LAST:event_btnAgregar4ActionPerformed
 
     private void btnAgregar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar5ActionPerformed
-        Principal.setPanelBase(new Ordenar(5));
+        vg.setPanelBase(new Ordenar(5), panel);
     }//GEN-LAST:event_btnAgregar5ActionPerformed
 
     private void btnAgregar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar6ActionPerformed
-        Principal.setPanelBase(new Ordenar(6));
+        vg.setPanelBase(new Ordenar(6), panel);
     }//GEN-LAST:event_btnAgregar6ActionPerformed
 
     private void btnCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta1ActionPerformed
-        Principal.setPanelBase(new Cuenta(1));
+        vg.setPanelBase(new Cuenta(1), panel);
     }//GEN-LAST:event_btnCuenta1ActionPerformed
 
     private void btnAgregar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar7ActionPerformed
-        Principal.setPanelBase(new Ordenar(7));
+        vg.setPanelBase(new Ordenar(7), panel);
     }//GEN-LAST:event_btnAgregar7ActionPerformed
 
     private void btnAgregar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar8ActionPerformed
-        Principal.setPanelBase(new Ordenar(8));
+        vg.setPanelBase(new Ordenar(8), panel);
     }//GEN-LAST:event_btnAgregar8ActionPerformed
 
     private void btnCuenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta2ActionPerformed
-        Principal.setPanelBase(new Cuenta(2));
+        vg.setPanelBase(new Cuenta(2), panel);
     }//GEN-LAST:event_btnCuenta2ActionPerformed
 
     private void btnCuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta3ActionPerformed
-        Principal.setPanelBase(new Cuenta(3));
+        vg.setPanelBase(new Cuenta(3), panel);
     }//GEN-LAST:event_btnCuenta3ActionPerformed
 
     private void btnCuenta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta4ActionPerformed
-        Principal.setPanelBase(new Cuenta(4));
+        vg.setPanelBase(new Cuenta(4), panel);
     }//GEN-LAST:event_btnCuenta4ActionPerformed
 
     private void btnCuenta5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta5ActionPerformed
-        Principal.setPanelBase(new Cuenta(5));
+        vg.setPanelBase(new Cuenta(5), panel);
     }//GEN-LAST:event_btnCuenta5ActionPerformed
 
     private void btnCuenta6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta6ActionPerformed
-        Principal.setPanelBase(new Cuenta(6));
+        vg.setPanelBase(new Cuenta(6), panel);
     }//GEN-LAST:event_btnCuenta6ActionPerformed
 
     private void btnCuenta7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta7ActionPerformed
-        Principal.setPanelBase(new Cuenta(7));
+        vg.setPanelBase(new Cuenta(7), panel);
     }//GEN-LAST:event_btnCuenta7ActionPerformed
 
     private void btnCuenta8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuenta8ActionPerformed
-        Principal.setPanelBase(new Cuenta(8));
+        vg.setPanelBase(new Cuenta(8), panel);
     }//GEN-LAST:event_btnCuenta8ActionPerformed
 
     private void btnMesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa1ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(1));
+        vg.setPanelBase(new PedidosMesa(1), panel);
     }//GEN-LAST:event_btnMesa1ActionPerformed
 
     private void btnMesa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa2ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(2));
+        vg.setPanelBase(new PedidosMesa(2), panel);
     }//GEN-LAST:event_btnMesa2ActionPerformed
 
     private void btnMesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa3ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(3));
+        vg.setPanelBase(new PedidosMesa(3), panel);
     }//GEN-LAST:event_btnMesa3ActionPerformed
 
     private void btnMesa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa4ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(4));
+        vg.setPanelBase(new PedidosMesa(4), panel);
     }//GEN-LAST:event_btnMesa4ActionPerformed
 
     private void btnMesa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa5ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(5));
+        vg.setPanelBase(new PedidosMesa(5), panel);
     }//GEN-LAST:event_btnMesa5ActionPerformed
 
     private void btnMesa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa6ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(6));
+        vg.setPanelBase(new PedidosMesa(6), panel);
     }//GEN-LAST:event_btnMesa6ActionPerformed
 
     private void btnMesa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa7ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(7));
+        vg.setPanelBase(new PedidosMesa(7), panel);
     }//GEN-LAST:event_btnMesa7ActionPerformed
 
     private void btnMesa8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesa8ActionPerformed
-        Principal.setPanelBase(new PedidosMesa(8));
+        vg.setPanelBase(new PedidosMesa(8), panel);
     }//GEN-LAST:event_btnMesa8ActionPerformed
 
     private void setValueComponents() {
@@ -648,7 +652,7 @@ public class Mesas extends javax.swing.JPanel {
         try {
             this.mesas = daoMesa.listar();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
