@@ -11,5 +11,8 @@ public interface DAOPlatillos {
     public Platillo buscarNombre(String nombre) throws Exception;
     public List<Platillo> buscarLikeNombre(String nombre) throws Exception;
     public List<Platillo> buscarPrecio(double precio) throws Exception;
+    public boolean agregar(String nombre, String tipo, double precio) throws Exception;
+    public boolean actualizar(String id, String nombre, String tipo, double precio) throws Exception;
+    public boolean eliminar(String id) throws Exception;
     
 }

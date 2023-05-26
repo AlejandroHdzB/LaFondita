@@ -2,6 +2,7 @@ package itt.Vista;
 
 import itt.DAO.DAOPedidosImpl;
 import itt.Interfaces.DAOPedidos;
+import itt.Modelos.Pedido;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -14,12 +15,14 @@ public class PedidosMesa extends javax.swing.JPanel {
     private final int idVenta;
     private DAOPedidos daoPedido;
     private DefaultTableModel model;
+    private double totalP;
 
     public PedidosMesa(int idMesa) {
         initComponents();
         this.idVenta = vg.ventasActivas[idMesa - 1];
         this.idMesa = idMesa;
         this.setValueComponents();
+        this.totalP = 0;
     }
 
     private void setValueComponents() {
@@ -29,7 +32,7 @@ public class PedidosMesa extends javax.swing.JPanel {
         this.setFormatTable();
 
         this.jLabelTitulo.setText("MESA " + idMesa);
-
+        this.lblTotal.setText("TOTAL: " + this.totalP);
     }
 
     private void setFormatTable() {
@@ -49,6 +52,10 @@ public class PedidosMesa extends javax.swing.JPanel {
                 o.getEstado(),
                 o.getCantidad(),
                 o.getSubtotal()}));
+
+            for (Pedido p  : daoPedido.listar(idVenta, "2")) {
+                this.totalP += p.getSubtotal();
+            }     
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

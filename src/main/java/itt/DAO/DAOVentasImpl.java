@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.List;
 import static itt.Vista.InicioSesion.*;
+import java.util.ArrayList;
 
 public class DAOVentasImpl extends Conexion implements DAOVentas {
 
@@ -94,8 +95,8 @@ public class DAOVentasImpl extends Conexion implements DAOVentas {
     public Venta getDatosCuenta(int idVenta) throws Exception {
         Venta venta = null;
         String consulta = "SELECT nombre,apellido,fecha,hora,total "
-                + "FROM ventas JOIN meseros "
-                + "USING(idmesero) "
+                + "FROM ventas JOIN usuarios "
+                + "ON ventas.idmesero = usuarios.idusuario "
                 + "WHERE idventa = ?";
         try {
             this.conectar();
@@ -123,5 +124,45 @@ public class DAOVentasImpl extends Conexion implements DAOVentas {
             this.desconectar();
         }
         return venta;
+    }
+
+    @Override
+    public List<Venta> listar(String fecha) throws Exception {
+        String consulta = "SELECT idventa,fecha,hora,total,idmesero FROM ventas "
+                + "WHERE fecha = ?";
+        List<Venta> ventas;
+        try {
+            this.conectar();
+            try {
+                ResultSet rs;
+                try (PreparedStatement st = conexion.prepareStatement(consulta)) {
+                    st.setDate(1, Date.valueOf(fecha));
+                    rs = st.executeQuery();
+                    ventas = new ArrayList<>();
+                    while (rs.next()) {
+                        Venta v = new Venta();
+                        Usuario u = new Usuario();
+                        
+                        v.setIdVenta(rs.getInt(1));
+                        v.setFecha(rs.getString(2));
+                        v.setHora(rs.getString(3));
+                        v.setTotal(rs.getDouble(4));
+                        u.setIdUsuario(rs.getString(5));
+                        v.setMesero(u);
+                        
+                        ventas.add(v);
+                    }
+                }
+                rs.close();
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            this.desconectar();
+        }
+        return ventas;
     }
 }

@@ -32,7 +32,6 @@ public class PrincipalM extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         jPanelBarraTitulo = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
-        btnMaximizar = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jPanelBase = new javax.swing.JPanel();
 
@@ -145,16 +144,6 @@ public class PrincipalM extends javax.swing.JFrame {
             }
         });
 
-        btnMaximizar.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
-        btnMaximizar.setText("▫");
-        btnMaximizar.setBorder(null);
-        btnMaximizar.setBorderPainted(false);
-        btnMaximizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaximizarActionPerformed(evt);
-            }
-        });
-
         btnMinimizar.setText("_");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
@@ -169,17 +158,14 @@ public class PrincipalM extends javax.swing.JFrame {
         jPanelBarraTituloLayout.setHorizontalGroup(
             jPanelBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBarraTituloLayout.createSequentialGroup()
-                .addGap(880, 880, 880)
+                .addGap(920, 920, 920)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnMaximizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelBarraTituloLayout.setVerticalGroup(
             jPanelBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnMaximizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -250,10 +236,6 @@ public class PrincipalM extends javax.swing.JFrame {
         this.setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
-    private void btnMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaximizarActionPerformed
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    }//GEN-LAST:event_btnMaximizarActionPerformed
-
     private void btnVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPedidosActionPerformed
         vg.setPanelBase(new Pedidos(), this.jPanelBase);
     }//GEN-LAST:event_btnVerPedidosActionPerformed
@@ -278,7 +260,6 @@ public class PrincipalM extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPedido;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMaximizar;
     private javax.swing.JButton btnMesas;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir;

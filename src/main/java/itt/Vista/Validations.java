@@ -10,4 +10,13 @@ public class Validations {
             return false;
         }
     }
+    
+    public static boolean isDecimal(String cadena) {
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
 }

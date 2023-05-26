@@ -27,12 +27,12 @@ public class PrincipalA extends javax.swing.JFrame {
         btnMesas = new javax.swing.JButton();
         btnVerPedidos = new javax.swing.JButton();
         btnAgregarPedido = new javax.swing.JButton();
-        btnIngresar = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnPlatillos = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
         jPanelBarraTitulo = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
-        btnMaximizar = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jPanelBase = new javax.swing.JPanel();
 
@@ -90,15 +90,6 @@ public class PrincipalA extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setText("INGRESAR CON OTRO USUARIO");
-        btnIngresar.setBorder(null);
-        btnIngresar.setBorderPainted(false);
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
-
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo16x16.png"))); // NOI18N
 
         jButton1.setText("REPORTES");
@@ -107,6 +98,25 @@ public class PrincipalA extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnPlatillos.setText("MODIFICAR PLATILLOS");
+        btnPlatillos.setBorder(null);
+        btnPlatillos.setBorderPainted(false);
+        btnPlatillos.setPreferredSize(new java.awt.Dimension(250, 50));
+        btnPlatillos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlatillosActionPerformed(evt);
+            }
+        });
+
+        btnIngresar.setText("INGRESAR CON OTRO USUARIO");
+        btnIngresar.setBorder(null);
+        btnIngresar.setBorderPainted(false);
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
             }
         });
 
@@ -121,6 +131,7 @@ public class PrincipalA extends javax.swing.JFrame {
             .addComponent(btnAgregarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnVerPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnPlatillos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanelOpcionesLayout.setVerticalGroup(
@@ -136,7 +147,9 @@ public class PrincipalA extends javax.swing.JFrame {
                 .addComponent(btnVerPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146)
+                .addGap(0, 0, 0)
+                .addComponent(btnPlatillos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -157,16 +170,6 @@ public class PrincipalA extends javax.swing.JFrame {
             }
         });
 
-        btnMaximizar.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
-        btnMaximizar.setText("▫");
-        btnMaximizar.setBorder(null);
-        btnMaximizar.setBorderPainted(false);
-        btnMaximizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaximizarActionPerformed(evt);
-            }
-        });
-
         btnMinimizar.setText("_");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
@@ -181,17 +184,14 @@ public class PrincipalA extends javax.swing.JFrame {
         jPanelBarraTituloLayout.setHorizontalGroup(
             jPanelBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBarraTituloLayout.createSequentialGroup()
-                .addGap(880, 880, 880)
+                .addGap(920, 920, 920)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnMaximizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelBarraTituloLayout.setVerticalGroup(
             jPanelBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnMaximizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -238,7 +238,7 @@ public class PrincipalA extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBg, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+            .addComponent(jPanelBg, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
         );
 
         pack();
@@ -262,10 +262,6 @@ public class PrincipalA extends javax.swing.JFrame {
         this.setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
-    private void btnMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaximizarActionPerformed
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    }//GEN-LAST:event_btnMaximizarActionPerformed
-
     private void btnVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPedidosActionPerformed
         vg.setPanelBase(new Pedidos(), this.jPanelBase);
     }//GEN-LAST:event_btnVerPedidosActionPerformed
@@ -287,6 +283,10 @@ public class PrincipalA extends javax.swing.JFrame {
         vg.setPanelBase(new Reportes(),this.jPanelBase);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnPlatillosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatillosActionPerformed
+        vg.setPanelBase(new ModPlatillos(),this.jPanelBase);
+    }//GEN-LAST:event_btnPlatillosActionPerformed
+
     private void setValueComponents() {
         this.bgColor = this.btnMesas.getBackground();
         this.jPanelBase.setBackground(bgColor);
@@ -294,9 +294,9 @@ public class PrincipalA extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPedido;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMaximizar;
     private javax.swing.JButton btnMesas;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnPlatillos;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerPedidos;
     private javax.swing.JButton jButton1;

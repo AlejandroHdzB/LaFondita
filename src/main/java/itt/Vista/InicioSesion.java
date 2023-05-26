@@ -1,6 +1,7 @@
 package itt.Vista;
 
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
 //import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicContrastIJTheme;
@@ -21,7 +22,7 @@ public class InicioSesion extends javax.swing.JFrame {
     public static VG vg;
 
     public InicioSesion() {
-        FlatMoonlightIJTheme.setup();
+        FlatMaterialOceanicContrastIJTheme.setup();
         initComponents();
         this.setValueComponents();
     }
